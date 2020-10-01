@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<article xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <info>
+        <title>Apunts Android</title>
+        <author>
+            <personname>
+                <firstname>Cristina</firstname>
+                <surname>Roigé Gaja</surname>
+            </personname>
+        </author>
+    </info>
+    <sect1 xml:lang="ca">
+        <title>Instal·lació d'Android Studio.</title>
+        <para>Per instal·lar Android Studio el que hem de fer és anar a la pàgina <link
+                xlink:href="https://developer.android.com/studio"/> i descarregar-nos
+            l'executable.</para>
+        <para>Un cop descarregat el fitxer .exe clicarem sobre aquest i ens prepararem a fer la
+            instal·lació 'Custom':</para>
+        <para><inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="img/03-Installacio_Android_Studio/001.jpg"/>
+                </imageobject>
+            </inlinemediaobject></para>
+        <para>Clicarem la opcio Android Virtual Device:</para>
+        <para><inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="img/03-Installacio_Android_Studio/002.jpg"/>
+                </imageobject>
+            </inlinemediaobject></para>
+        <para>Li direm la carpeta on s'instal·larà</para>
+        <para><inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="img/03-Installacio_Android_Studio/003.jpg"/>
+                </imageobject>
+            </inlinemediaobject></para>
+        <para>Choose Start Menu Folder</para>
+        <para><inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="img/03-Installacio_Android_Studio/004.jpg"/>
+                </imageobject>
+            </inlinemediaobject></para>
+        <para>S'instal·larà...</para>
+        <para><inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="img/03-Installacio_Android_Studio/005.jpg"/>
+                </imageobject>
+            </inlinemediaobject></para>
+        <para><inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="img/03-Installacio_Android_Studio/006.jpg"/>
+                </imageobject>
+            </inlinemediaobject></para>
+        <para><inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="img/03-Installacio_Android_Studio/007.jpg"/>
+                </imageobject>
+            </inlinemediaobject></para>
+        <para>Clicarem que no volem importar cap configuració:</para>
+        <para><inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="img/03-Installacio_Android_Studio/008.jpg"/>
+                </imageobject>
+            </inlinemediaobject></para>
+        <para>Configuracions inicials:</para>
+        <para>Volem compartir informació marcarem que no.</para>
+        <para><inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="img/03-Installacio_Android_Studio/009.jpg"/>
+                </imageobject>
+            </inlinemediaobject></para>
+        <para>Després de descarregar unes actualitzacions es sortirà la següent pantalla:</para>
+        <para><inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="img/03-Installacio_Android_Studio/010.jpg"/>
+                </imageobject>
+            </inlinemediaobject></para>
+        <para>Triarem la instal·lació Standard</para>
+        <para><inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="img/03-Installacio_Android_Studio/011.jpg"/>
+                </imageobject>
+            </inlinemediaobject></para>
+        <para>Seleccionarem el theme de la IU</para>
+        <para><inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="img/03-Installacio_Android_Studio/012.jpg"/>
+                </imageobject>
+            </inlinemediaobject></para>
+        <para>Ens mostra tot el que instal·larà:</para>
+        <para/>
+        <itemizedlist>
+            <listitem>
+                <para>Setup Type: Standard</para>
+            </listitem>
+            <listitem>
+                <para>SDK Folder: C:\Users\Cristina\AppData\Local\Android\Sdk</para>
+            </listitem>
+            <listitem>
+                <para>JDK Location: C:\Program Files\Android\Android Studio\jre</para>
+            </listitem>
+            <listitem>
+                <para>Total Download Size: 543 MB</para>
+            </listitem>
+            <listitem>
+                <para>SDK Components to Download: </para>
+            </listitem>
+            <listitem>
+                <para>Android Emulator 239 MB</para>
+            </listitem>
+            <listitem>
+                <para>Android SDK Build-Tools 30.0.2 51,3 MB</para>
+            </listitem>
+            <listitem>
+                <para>Android SDK Platform 30 49,9 MB</para>
+            </listitem>
+            <listitem>
+                <para>Android SDK Platform-Tools 8,03 MB</para>
+            </listitem>
+            <listitem>
+                <para>Android SDK Tools 149 MB</para>
+            </listitem>
+            <listitem>
+                <para>Intel x86 Emulator Accelerator (HAXM installer) 2.63 MB</para>
+            </listitem>
+            <listitem>
+                <para>SDK Patch Applier v4 1,74 MB</para>
+            </listitem>
+            <listitem>
+                <para>Sources for Android 30 41,3 MB</para>
+            </listitem>
+        </itemizedlist>
+        <para></para>
+        <para><inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="img/03-Installacio_Android_Studio/013.jpg"/>
+            </imageobject>
+        </inlinemediaobject></para>
+        <para>Apareixerà la pantalla inicial d'Android Studio i clicarem al botó de configure <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="img/03-Installacio_Android_Studio/016.jpg"/>
+                </imageobject>
+            </inlinemediaobject></para>
+        <para><inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="img/03-Installacio_Android_Studio/015.jpg"/>
+            </imageobject>
+        </inlinemediaobject></para>
+        <para>Ens apareixerà el SDK Manager on podrem descarregar les API d'Android.</para>
+        <para>A la pantalla SKD Plataforms podem triar la versió d`Android que voldrem
+            programar</para>
+        <para><inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="img/03-Installacio_Android_Studio/018.jpg"/>
+                </imageobject>
+            </inlinemediaobject></para>
+        <para>Si cliquem a la pestanya SDK tools podem veure les eines per desenvolupar i depurar
+            l'aplicacions dependents de la plataforma.</para>
+        <para><inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="img/03-Installacio_Android_Studio/019.jpg"/>
+                </imageobject>
+            </inlinemediaobject></para>
+        <para/>
+    </sect1>
+</article>

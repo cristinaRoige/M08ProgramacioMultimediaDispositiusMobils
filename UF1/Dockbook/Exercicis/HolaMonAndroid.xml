@@ -1,0 +1,957 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+    version="5.0">
+    <info>
+        <title>Hola món Android Studio.</title>
+        <author>
+            <personname>
+                <firstname>Cristina</firstname>
+                <surname>Roigé Gaja</surname>
+            </personname>
+        </author>
+    </info>
+    <sect1>
+        <title>Practica 01 -Hola Món-</title>
+        <sect2>
+            <title>Presentació</title>
+            <para>Aquesta pràctica codelab forma part de la Unitat 1: Comenceu al curs Fonaments per
+                a desenvolupadors D'Android (versió 2). Obtingueu el màxim valor d'aquest curs si
+                treballeu els codelabs en seqüència:</para>
+            <para>Per obtenir la llista completa de codelabs del curs, consulteu Codelabs for
+                Android Devoloper Fundamentals (V2).</para>
+            <para>Per obtindre més informació sobre el curs, inclosos els enllaços a tots els
+                capítols conceptuals, aplicacions i diapositives, consulteu Fonaments bàsics per a
+                desenvolupadors d'Android (versió 2).</para>
+            <para><emphasis role="bold">Nota:</emphasis> Aquest curs utilitza els termes
+                    <emphasis>"codelab"</emphasis> i <emphasis>"pràctic</emphasis>
+                indistintament.</para>
+            <para><emphasis role="bold">Introducció</emphasis></para>
+            <para>En aquesta pràctica aprendreu a instal·lar Android Studio, l'entorn de
+                desenvolupament d'Android, També creeu i executeu la vostra primera aplicació per a
+                Android, Hello World, en un emulador i en un dispositiu físic.</para>
+            <para><emphasis role="bold">El que ja haurieu de saber</emphasis></para>
+            <para>Haurieu de ser capaços de:</para>
+            <itemizedlist>
+                <listitem>
+                    <para>Coneixer el procés general de desenvolupament de programari per
+                        aplicacions orientades a objectes que utilitzen un IDE (entorn de
+                        desenvolupament integrat com Android Studio.</para>
+                </listitem>
+                <listitem>
+                    <para>Demostrar que teniu almenys entre 1 i 3 anys d'experiència en programació
+                        orientada a objectes, amb alguns d'ells centrats en llenguatge de
+                        programació Java. (Aquestes pràctiques no explicaran la programació
+                        orientada a objectes ni el llenguatge Java)</para>
+                </listitem>
+            </itemizedlist>
+            <para><emphasis role="bold">Requisits</emphasis></para>
+            <itemizedlist>
+                <listitem>
+                    <para>Un ordinador amb Windows, Linux o Mac un macOS, Consulteu la pàgina de
+                        descàrrega d'Android Studio per obtenir els requisits del sistema
+                        actualitzats.</para>
+                </listitem>
+                <listitem>
+                    <para>Accés a Internet o una forma alternativa de carregar les darreres
+                        instal·lacions d'Android Studio i Java a l'ordinador.</para>
+                </listitem>
+            </itemizedlist>
+            <para><emphasis role="bold">Què aprendràs?</emphasis></para>
+            <itemizedlist>
+                <listitem>
+                    <para>Com instal·lar i utilitzar l'IDE d'Android Studio.</para>
+                </listitem>
+                <listitem>
+                    <para>Com s'utilitza el procés de desenvolupament per crear aplicacions
+                        d'Android.</para>
+                </listitem>
+                <listitem>
+                    <para>Com es crea un projecte d'Android a partir d'una plantilla</para>
+                </listitem>
+                <listitem>
+                    <para>Com s'afegeixen missatges de registre a la vostra aplicació amb finalitats
+                        de depuració.</para>
+                </listitem>
+            </itemizedlist>
+            <para><emphasis role="bold">Què faràs?</emphasis></para>
+            <itemizedlist>
+                <listitem>
+                    <para>Instal·leu l'entorn de desenvolupament d'Android Studio.</para>
+                </listitem>
+                <listitem>
+                    <para>Creeu un emulador (dispositiu virtual) per executar l'aplicació a
+                        l'ordinador.</para>
+                </listitem>
+                <listitem>
+                    <para>Creeu i executeu l'aplicació Hello World als dispositius físics i
+                        virtuals.</para>
+                </listitem>
+                <listitem>
+                    <para>Exploreu el disseny del projecte.</para>
+                </listitem>
+                <listitem>
+                    <para>Genereu i visualitzeu missatges de registre des de la vostra
+                        aplicació.</para>
+                </listitem>
+                <listitem>
+                    <para>Exploreu el fitxer AndroidManifest.xml</para>
+                </listitem>
+            </itemizedlist>
+        </sect2>
+        <sect2>
+            <title>Descripció general de l'aplicació</title>
+            <para>Després d'instal·lar Android Studio amb èxit, crearà a partir d'una plantilla
+                (template) un nou projecte per a l'aplicació Hello World. Aquesta senzilla aplicació
+                mostra la cadena "Hello World" a la pantalla del dispositiu virtual o físic
+                d'Android.</para>
+            <para>A continuació, es mostrarà l'aplicació acabada:</para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/04_Hola_mon_Android_Studio/001.jpg"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+        </sect2>
+        <sect2>
+            <title>Instal·lar Android Studio</title>
+            <para>Android Studio proporcions un entorn de desenvolupament integrat complet (IDE) que
+                inclou un editor de codi avançat i un conjunt de plantilles d'aplicacions. A més,
+                conté eines per al desenvolupament, depuració, proves i rendiment que fan el
+                desenvolupament d'aplicacions sigui més ràpid i senzill. Podeu provar les vostres
+                aplicacions amb una àmplia gamma d'emuladors preconfigurats o al vostre propi
+                dispositiu mòbil, crear aplicacions de producció i publicar-les a la botiga Google
+                Play.</para>
+            <para><emphasis role="bold">Nota:</emphasis> Android Studio es millora contínuament. Per
+                obtenir la informació més recent sobre els requisits del sistema i les instruccions
+                d'instal·lació, consulteu Android Studio.</para>
+            <para>Android Studio està disponibre per a ordinadors amb Windows o Linux i per Macs que
+                executin macOS. El nou Open JDK (Java Devolopment Kit) s'inclou amb Android
+                Studio.</para>
+            <para>Per posar-vos en funcionament amb Android Studio, primer comproveu els requisits
+                del sistema <link
+                    xlink:href="https://developer.android.com/studio/index.html#Requirements"/> per
+                assegurar-vos que el vostre sistema els compleix. La instal·lació es similar per a
+                totes les plataformes. Totes les diferències s'observen a continuació.</para>
+            <itemizedlist>
+                <listitem>
+                    <para>Aneu al lloc dels desenvolupadors d'Android <link
+                            xlink:href="https://developer.android.com/studio"/> i seguiu les
+                        instruccions per descarregar i instal·lar Android Studio <link
+                            xlink:href="https://developer.android.com/studio/install.html"/>. </para>
+                </listitem>
+                <listitem>
+                    <para>Accepteu les configuracions predeterminades per a tots els passos i
+                        assegureu-vos que tots els components estan seleccionats per a la
+                        instal·lació. </para>
+                </listitem>
+                <listitem>
+                    <para>Després de finalitzar la instal·lació, l'assistent de configuració
+                        descarragarà i instal·larà alguns components addicionals, inclòs l'SDK
+                        d'Android. Tingueu paciència, pot trigar una mica en funció de la velocitat
+                        d'Internet i alguns passos poden semblar redundants. </para>
+                </listitem>
+                <listitem>
+                    <para>Quan finalitzi la descàrrega, s'iniciarà Android Studio i ja podreu crear
+                        el vostre primer projecte.</para>
+                </listitem>
+            </itemizedlist>
+            <para><emphasis role="bold">Solució de problemes:</emphasis> si teniu problemes amb la
+                instal·lació, consulteu les notes de la versió d'Android Studio o obteniu ajuda dels
+                vostres instructors.</para>
+        </sect2>
+        <sect2>
+            <title>Descarregar Android Studio</title>
+            <para>Podeu descarregar Android Studio en el Següent enllaç <link
+                    xlink:href="https://developer.android.com/studio"/></para>
+        </sect2>
+        <sect2>
+            <title>Instal·lació d'Android Studio</title>
+            <para>Per instal·lar Android Studio a Windows segueix els següents pasos:</para>
+            <itemizedlist>
+                <listitem>
+                    <para>Si has descarregat un arxiu .exe (recomenat), fes doble clic en aquest per
+                        iniciar lo.</para>
+                </listitem>
+                <listitem>
+                    <para>Si has descarregat un arxiu .zip extreu lo i còpia la carpeta <emphasis
+                            role="bold">android-studio </emphasis> a a carpeta <emphasis role="bold"
+                            >Arxius de probrama.</emphasis> A continuació obre la carpeta <emphasis
+                            role="bold">android-studio-bin</emphasis> i aleshores inicia
+                        studio64.exe (per màquines de 64 bits) o studio.exe (per a màquines de 32
+                        bits).</para>
+                </listitem>
+                <listitem>
+                    <para>Segueix les pases de l'assistent de configuració d'Android Studio i
+                        assegura't d'instal·lar els paquets de SDK que recomani.</para>
+                </listitem>
+            </itemizedlist>
+            <para>Cliquem al fitxer .exe i sortirà l'assistent d'instal·lació:</para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/04_Hola_mon_Android_Studio/002.jpg"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para>Clicarem el botó next. <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/04_Hola_mon_Android_Studio/003.jpg"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para>Clicarem el checkbox Android Virtual Device i el botó next</para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/04_Hola_mon_Android_Studio/004.jpg"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para>Clicarem Install:</para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/04_Hola_mon_Android_Studio/005.jpg"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/04_Hola_mon_Android_Studio/006.jpg"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/04_Hola_mon_Android_Studio/007.jpg"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/04_Hola_mon_Android_Studio/008.jpg"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para>Un cop acabada la instal·lació s'obrirà la pantalla d'inici d'Android
+                Studio</para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/04_Hola_mon_Android_Studio/009.jpg"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/04_Hola_mon_Android_Studio/010.jpg"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+        </sect2>
+        <sect2>
+            <title>Crear la primera aplicació Hola món.</title>
+            <para>Un cop instal·lat crearem una aplicació que mostrarà "Hola món" per verificar que
+                Android Studio està instal·lat correctament i per conèixer els conceptes bàsics del
+                desenvolupament amb Android Studio.</para>
+            <sect3>
+                <title/>
+                <para>Per crear el nou projecte obrirem Android Studio. A la finestra principal de
+                    Benvinguda a Android Studio, feu clic a inicia un nou projecte d'Android Studio. <inlinemediaobject>
+                        <imageobject>
+                            <imagedata fileref="img/04_Hola_mon_Android_Studio/011.jpg"/>
+                        </imageobject>
+                    </inlinemediaobject></para>
+                <para>Triarem una plantilla (template)</para>
+                <para><inlinemediaobject>
+                        <imageobject>
+                            <imagedata fileref="img/04_Hola_mon_Android_Studio/012.jpg"/>
+                        </imageobject>
+                    </inlinemediaobject></para>
+                <para>Configurarem nom del projecte, ruta i MinimunSDK</para>
+                <para><inlinemediaobject>
+                        <imageobject>
+                            <imagedata fileref="img/04_Hola_mon_Android_Studio/013.jpg"/>
+                        </imageobject>
+                    </inlinemediaobject></para>
+                <para>Android Studio crearà una carpeta per als projectes i crea el projecte amb
+                    Gradle.</para>
+                <para><emphasis role="bold">Consell:</emphasis> consulteu la pàgina Configuració del
+                    desenvolupador de la compilació per obtenir informació detallada <link
+                        xlink:href="https://developer.android.com/studio/build/index.html"/>.</para>
+                <para>També podeu veure un missatge "Consell del dia" amb dreceres de teclat i
+                    altres consells útils. Feu clic a Tanca per tancar el missatge.</para>
+                <para>Apareix l'editor d'Android Studio. Seguiu aquests passos:<itemizedlist>
+                        <listitem>
+                            <para>Feu clic a la pestanya activity_main.xml per veure l'editor de disseny.<inlinemediaobject>
+                                    <imageobject>
+                                        <imagedata fileref="img/04_Hola_mon_Android_Studio/015.jpg"
+                                        />
+                                    </imageobject>
+                                </inlinemediaobject></para>
+                        </listitem>
+                        <listitem>
+                            <para>Feu clic a la pestanya Disseny de l'editor de disseny, si encara
+                                no està seleccionada, per mostrar una representació gràfica del
+                                disseny, tal com es mostra a continuació. <inlinemediaobject>
+                                    <imageobject>
+                                        <imagedata fileref="img/04_Hola_mon_Android_Studio/016.jpg"
+                                        />
+                                    </imageobject>
+                                </inlinemediaobject></para>
+                            <para>
+                                <inlinemediaobject>
+                                    <imageobject>
+                                        <imagedata fileref="img/04_Hola_mon_Android_Studio/017.jpg"
+                                        />
+                                    </imageobject>
+                                </inlinemediaobject></para>
+                        </listitem>
+                        <listitem>
+                            <para>Feu clic a la pestanya MainActivity.java per veure l'editor de
+                                codi com es mostra a continuació. <inlinemediaobject>
+                                    <imageobject>
+                                        <imagedata fileref="img/04_Hola_mon_Android_Studio/018.jpg"
+                                        />
+                                    </imageobject>
+                                </inlinemediaobject>
+                            </para>
+                        </listitem>
+                    </itemizedlist></para>
+            </sect3>
+            <sect3>
+                <title>Exploreu el panell Projecte> Android</title>
+                <para>En aquesta pràctica, explorareu com s’organitza el projecte a Android
+                    Studio.</para>
+                <orderedlist>
+                    <listitem>
+                        <para>Si encara no està seleccionat, feu clic a la pestanya Projecte a la
+                            columna de la pestanya vertical a la part esquerra de la finestra
+                            d'Android Studio. Apareix el panell del projecte.</para>
+                    </listitem>
+                    <listitem>
+                        <para> Per veure el projecte a la jerarquia estàndard del projecte
+                            d'Android, trieu Android al menú emergent situat a la part superior del
+                            panell del Projecte, tal com es mostra a continuació.</para>
+                        <para><inlinemediaobject>
+                                <imageobject>
+                                    <imagedata fileref="img/04_Hola_mon_Android_Studio/019.jpg"/>
+                                </imageobject>
+                            </inlinemediaobject></para>
+                    </listitem>
+                </orderedlist>
+                <para><emphasis role="bold">Nota</emphasis>: aquest capítol i altres capítols fan
+                    referència al tauler Projecte, quan es defineix a <emphasis role="bold"
+                        >Android</emphasis>, com a tauler <emphasis role="bold">Project > Android
+                        pane</emphasis>.</para>
+            </sect3>
+            <sect3>
+                <title>Exploreu la carpeta Scripts de Gradle</title>
+                <para>El sistema de compilació de Gradle a Android Studio facilita incloure binaris
+                    externs o altres mòduls de biblioteca a la vostra compilació com a
+                    dependències.</para>
+                <para>Quan creeu un projecte d'aplicació per primera vegada, apareix el <emphasis
+                        role="bold">tauler Projecte> Android</emphasis> amb la carpeta <emphasis
+                        role="bold">Gradle Scripts </emphasis>expandida, tal com es mostra a
+                    continuació.</para>
+                <para><inlinemediaobject>
+                        <imageobject>
+                            <imagedata fileref="img/04_Hola_mon_Android_Studio/020.jpg"/>
+                        </imageobject>
+                    </inlinemediaobject></para>
+                <para>Seguiu aquests passos per explorar el sistema Gradle:</para>
+                <itemizedlist>
+                    <listitem>
+                        <para>Si la carpeta <emphasis role="bold">Gradle Scripts</emphasis> no està
+                            expandida, feu clic al triangle per expandir-la.</para>
+                        <para>Aquesta carpeta conté tots els fitxers que necessita el sistema de
+                            compilació.</para>
+                    </listitem>
+                    <listitem>
+                        <para>Cerqueu el fitxer <emphasis role="bold">build.gradle(Project:
+                                HelloWorld)</emphasis>.</para>
+                        <para>Aquí és on trobareu les opcions de configuració que són comunes a tots
+                            els mòduls que formen el vostre projecte. Cada projecte d'Android Studio
+                            conté un únic fitxer de compilació de Gradle de nivell superior. La
+                            majoria de les vegades, no cal que feu cap canvi en aquest fitxer, però
+                            és útil entendre’n el contingut.</para>
+                        <para>Per defecte, el fitxer de compilació de nivell superior utilitza el
+                            bloc <code>buildscript</code> per definir els dipòsits i dependències
+                            Gradle que són comuns a tots els mòduls del projecte. Quan la vostra
+                            dependència és una altra cosa que una biblioteca local o un arbre de
+                            fitxers, Gradle busca els fitxers als repositoris en línia que
+                            s'especifiquen al bloc de repositoris d'aquest fitxer. Per defecte, els
+                            nous projectes d'Android Studio declaren JCenter i Google (que inclou el
+                            dipòsit de Google Maven) com a ubicacions del dipòsit:</para>
+                        <para><inlinemediaobject>
+                                <imageobject>
+                                    <imagedata fileref="img/04_Hola_mon_Android_Studio/021.jpg"/>
+                                </imageobject>
+                            </inlinemediaobject></para>
+                    </listitem>
+                    <listitem>
+                        <para>Mira el fitxer <emphasis role="bold"
+                                >build.gradle(Module:app)</emphasis></para>
+                        <para>A més del fitxer <code>build.gradle</code> a nivell de projecte, cada
+                            mòdul té un fitxer <code>build.gradle</code> propi, que us permet
+                            configurar els paràmetres de compilació per a cada mòdul específic
+                            (l’aplicació <emphasis>HelloWorld</emphasis> només té un mòdul). La
+                            configuració d’aquests paràmetres de compilació us permet proporcionar
+                            opcions d’embalatge personalitzades, com ara tipus de compilació
+                            addicionals i sabors de productes. També podeu anul·lar la configuració
+                            al fitxer <code>AndroidManifest.xml</code> o al fitxer
+                                <code>build.gradle</code> de nivell superior.</para>
+                        <para>Aquest fitxer sol ser el fitxer que s’edita quan es canvien les
+                            configuracions de nivell d’aplicació, com ara declarar dependències a la
+                            secció de dependències. Podeu declarar una dependència de biblioteca
+                            utilitzant una de les diferents configuracions de dependència. Cada
+                            configuració de dependències proporciona a Gradle diferents instruccions
+                            sobre com utilitzar la biblioteca. Per exemple, l'arxiu
+                                <code>implementation fileTree(dir: 'libs', include:
+                                ['*.jar'])</code> afegeix una dependència de tots els fitxers ".jar"
+                            del directori <code>libs</code>.</para>
+                        <para>El següent és el fitxer <emphasis role="bold"
+                                >build.gradle(Module:app)</emphasis> de l’aplicació
+                            HelloWorld:</para>
+                        <para><inlinemediaobject>
+                                <imageobject>
+                                    <imagedata fileref="img/04_Hola_mon_Android_Studio/022.jpg"/>
+                                </imageobject>
+                            </inlinemediaobject></para>
+                    </listitem>
+                    <listitem>
+                        <para>Clica el triangle per tancar <emphasis role="bold">Gradle
+                                Scripts</emphasis></para>
+                    </listitem>
+                </itemizedlist>
+            </sect3>
+            <sect3>
+                <title>Explorant l'aplicació i la carpeta res folders.</title>
+                <para> Tots els codis i recursos de l'aplicació es troben a les carpetes app i de
+                    res. </para>
+                <itemizedlist>
+                    <listitem>
+                        <para> Amplieu la carpeta de <emphasis role="bold">app</emphasis>, la
+                            carpeta <emphasis role="bold">java</emphasis> i la carpeta <emphasis
+                                role="bold"> com.example.android.helloworld</emphasis> per veure el
+                            fitxer java <emphasis role="bold">MainActivity</emphasis>. Si feu doble
+                            clic al fitxer, s’obre a l’editor de codi. </para>
+                        <para>La carpeta <emphasis role="bold">Java</emphasis> inclou fitxers de
+                            classe Java en tres subcarpetes, tal com es mostra a la figura anterior.
+                            La carpeta <emphasis role="bold">com.example.hello.helloworld</emphasis>
+                            (o el nom de domini que heu especificat) conté tots els fitxers d’un
+                            paquet d’aplicacions. Les altres dues carpetes s’utilitzen per fer
+                            proves i es descriuen en una altra lliçó. Per a l’aplicació Hello World,
+                            només hi ha un paquet i conté <code>MainActivity.java</code>. El nom de
+                            la primera activitat (pantalla) que veu l’usuari, que també inicialitza
+                            recursos de tota l’aplicació, s’anomena habitualment <emphasis
+                                role="bold">MainActivity</emphasis> (l’extensió del fitxer s’omet al
+                            panell <emphasis role="bold">Project > Android</emphasis>).</para>
+                    </listitem>
+                    <listitem>
+                        <para>Amplieu la carpeta <emphasis role="bold">res</emphasis> i la carpeta
+                            de <emphasis role="bold">layout</emphasis> i feu doble clic al
+                                fitxer<emphasis role="bold"> activity_main.xml</emphasis> per
+                            obrir-lo a l'editor de disseny</para>
+                        <para> La carpeta <emphasis role="bold">res</emphasis> conté recursos, com
+                            ara dissenys, cadenes i imatges. Normalment, una <code>Activity</code>
+                            s’associa a un disseny de visualitzacions d’interfície d’usuari definit
+                            com a fitxer XML. Aquest fitxer sol rebre el nom de la seva
+                                <code>Activity</code>. </para>
+                        <para><inlinemediaobject>
+                                <imageobject>
+                                    <imagedata fileref="img/04_Hola_mon_Android_Studio/023.jpg"/>
+                                </imageobject>
+                            </inlinemediaobject></para>
+                    </listitem>
+                </itemizedlist>
+            </sect3>
+            <sect3>
+                <title>Explorant la carpeta manifest.</title>
+                <para> La carpeta Manifests conté fitxers que proporcionen informació essencial
+                    sobre la vostra aplicació al sistema Android, que el sistema ha de tenir abans
+                    de poder executar qualsevol codi de l'aplicació. </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>Desplega la carpeta <emphasis role="bold">manifests</emphasis>.</para>
+                    </listitem>
+                    <listitem>
+                        <para>Obre el fitxer <emphasis role="bold"
+                            >AndroidManifest.xml</emphasis></para>
+                    </listitem>
+                </itemizedlist>
+                <para>El fitxer <code>AndroidManifest.xml</code> descriu tots els components de la
+                    vostra aplicació per a Android. Tots els components d'una aplicació, com ara
+                    cada <code>Activity</code>, s'han de declarar en aquest fitxer XML. En altres
+                    lliçons del curs, modificareu aquest fitxer per afegir funcions i permisos de
+                    funcions. Per obtenir una introducció, consulteu Descripció general del manifest
+                    de l'aplicació. <link
+                        xlink:href="https://developer.android.com/guide/topics/manifest/manifest-intro.html"
+                    /></para>
+            </sect3>
+        </sect2>
+        <sect2>
+            <title>Utilitzant un dispositiu virtual (emulador)</title>
+            <para> En aquesta tasca, utilitzeu el gestor de dispositius virtuals d'Android (AVD) per
+                crear un dispositiu virtual (també conegut com a emulador) que simuli la
+                configuració d'un tipus concret de dispositiu Android i utilitzeu aquest dispositiu
+                virtual per executar l'aplicació. Tingueu en compte que Android Emulator té
+                requisits addicionals més enllà dels requisits bàsics del sistema per a Android
+                Studio. </para>
+            <para> Mitjançant el Gestor AVD, definiu les característiques del maquinari d’un
+                dispositiu, el seu nivell d’API, l’emmagatzematge, la composició i altres propietats
+                i el deseu com a dispositiu virtual. Amb els dispositius virtuals, podeu provar
+                aplicacions en diferents configuracions de dispositius (com ara tauletes i telèfons)
+                amb diferents nivells d’API, sense haver d’utilitzar dispositius físics. </para>
+            <sect3>
+                <title>Creant un dispositiu Android virtual (AVD)</title>
+                <para>Per executar un emulador a l'ordinador, heu de crear una configuració que
+                    descrigui el dispositiu virtual.<itemizedlist>
+                        <listitem>
+                            <para>A Android Studio, seleccioneu <emphasis role="bold"><emphasis
+                                        role="bold">Tools > Android > AVD
+                                    Manager</emphasis></emphasis> (Eines> Android> Gestor AVD ) o
+                                feu clic a la icona del Gestor AVD Icona del Gestor AVD a la barra
+                                d'eines. Apareix la pantalla Els vostres dispositius virtuals. Si ja
+                                heu creat dispositius virtuals, la pantalla els mostra (tal com es
+                                mostra a la figura següent); en cas contrari, veureu una llista en
+                                blanc.</para>
+                            <para><inlinemediaobject>
+                                    <imageobject>
+                                        <imagedata fileref="img/04_Hola_mon_Android_Studio/024.jpg"
+                                        />
+                                    </imageobject>
+                                </inlinemediaobject>
+                                <inlinemediaobject>
+                                    <imageobject>
+                                        <imagedata fileref="img/04_Hola_mon_Android_Studio/025.jpg"
+                                        />
+                                    </imageobject>
+                                </inlinemediaobject></para>
+                            <para><inlinemediaobject>
+                                    <imageobject>
+                                        <imagedata fileref="img/04_Hola_mon_Android_Studio/026.jpg"
+                                        />
+                                    </imageobject>
+                                </inlinemediaobject></para>
+                        </listitem>
+                        <listitem>
+                            <para> Feu clic a <emphasis role="bold"><emphasis role="bold">+Create
+                                        Virtual Device</emphasis></emphasis>(+ Crea un dispositiu
+                                virtual ). Apareix la finestra <emphasis role="bold">Select
+                                    Hardware</emphasis> (Selecciona maquinari) que mostra una llista
+                                de dispositius de maquinari preconfigurats. Per a cada dispositiu,
+                                la taula proporciona una columna per a la mida de la pantalla
+                                diagonal <emphasis role="bold">size</emphasis>(mida), la resolució
+                                de la pantalla en píxels <emphasis role="bold"
+                                >Resolution</emphasis>(resolució) i la densitat de píxels <emphasis
+                                    role="bold">Density</emphasis>(densitat). </para>
+                            <para><inlinemediaobject>
+                                    <imageobject>
+                                        <imagedata fileref="img/04_Hola_mon_Android_Studio/027.jpg"
+                                        />
+                                    </imageobject>
+                                </inlinemediaobject></para>
+                        </listitem>
+                        <listitem>
+                            <para> Trieu un dispositiu com <emphasis role="bold">Nexus 5x</emphasis>
+                                o <emphasis role="bold">Pixel XL</emphasis> i feu clic a <emphasis
+                                    role="bold">Next</emphasis> (Següent). Apareix la pantalla
+                                    <emphasis role="bold">System Image</emphasis> (Imatge del
+                                sistema). </para>
+                        </listitem>
+                        <listitem>
+                            <para>Feu clic a la pestanya Recomanats si encara no està seleccionada i
+                                trieu quina versió del sistema Android s'executarà al dispositiu
+                                virtual (com ara Oreo).</para>
+                            <para><inlinemediaobject>
+                                    <imageobject>
+                                        <imagedata fileref="img/04_Hola_mon_Android_Studio/028.jpg"
+                                        />
+                                    </imageobject>
+                                </inlinemediaobject></para>
+                            <para>Instal·larem la Imatge Oreo que es la recomanada.</para>
+                            <para>Si ens surt el missatge HAXM no està instal·lat s'haurà
+                                d'instal·lar.</para>
+                            <para><inlinemediaobject>
+                                    <imageobject>
+                                        <imagedata fileref="img/04_Hola_mon_Android_Studio/029.jpg"
+                                        />
+                                    </imageobject>
+                                </inlinemediaobject></para>
+                            <para><inlinemediaobject>
+                                    <imageobject>
+                                        <imagedata fileref="img/04_Hola_mon_Android_Studio/030.jpg"
+                                        />
+                                    </imageobject>
+                                </inlinemediaobject></para>
+                            <para>Quan acabem triarem la orientació del dispositiu Poftait
+                                (vertical) Landscape(horitzontal)</para>
+                            <para><inlinemediaobject>
+                                    <imageobject>
+                                        <imagedata fileref="img/04_Hola_mon_Android_Studio/032.jpg"
+                                        />
+                                    </imageobject>
+                                </inlinemediaobject></para>
+                            <para>Clicarem finish.</para>
+                            <para>Hi ha moltes més versions disponibles de les que es mostren a la
+                                pestanya Recomanacions. Mireu les pestanyes Imatges x86 i Altres
+                                imatges per veure-les.</para>
+                            <para>Si un enllaç de baixada és visible al costat de la imatge del
+                                sistema que voleu utilitzar, encara no està instal·lat. Feu clic a
+                                l'enllaç per iniciar la baixada i, a continuació, feu clic a
+                                Finalitza.</para>
+                        </listitem>
+                        <listitem>
+                            <para> Després de triar una imatge del sistema, feu clic a Següent.
+                                Apareix la finestra del dispositiu virtual d'Android (AVD). També
+                                podeu canviar el nom de l'AVD. Comproveu la configuració i feu clic
+                                a Finalitza. </para>
+                        </listitem>
+                    </itemizedlist></para>
+            </sect3>
+            <sect3>
+                <title>Executa la app al dispositiu virtual.</title>
+                <para>En aquesta tasca, finalment executareu la vostra aplicació Hello World</para>
+                <itemizedlist>
+                    <listitem>
+                        <para> En aquesta tasca, finalment executareu la vostra aplicació Hello
+                            World .</para>
+                    </listitem>
+                    <listitem>
+                        <para> La finestra <emphasis role="bold">Select DeploymentTarget</emphasis>,
+                            a Dispositius virtuals disponibles, <emphasis role="bold">seleccioneu el
+                                dispositiu virtual</emphasis> que acabeu de crear<emphasis
+                                role="bold">Ok.</emphasis> i feu clic a D'acord. </para>
+                        <para><inlinemediaobject>
+                                <imageobject>
+                                    <imagedata fileref="img/04_Hola_mon_Android_Studio/034.jpg"/>
+                                </imageobject>
+                            </inlinemediaobject></para>
+                        <para>L'emulador s'inicia i arrenca igual que un dispositiu físic. Depenent
+                            de la velocitat de l'ordinador, això pot trigar una estona. La vostra
+                            aplicació es crea i, un cop l’emulador estigui llest, Android Studio
+                            carregarà l’aplicació a l’emulador i l’executarà.</para>
+                        <para>Hauríeu de veure l’aplicació Hello World com es mostra a la figura següent.</para>
+                        <para><inlinemediaobject>
+                                <imageobject>
+                                    <imagedata fileref="img/04_Hola_mon_Android_Studio/033.jpg"/>
+                                </imageobject>
+                            </inlinemediaobject></para>
+                        <para><emphasis role="bold">Consell</emphasis>: en fer proves en un
+                            dispositiu virtual, és una bona pràctica iniciar-lo una vegada al
+                            principi de la sessió. No ho heu de tancar fins que no hàgiu acabat de
+                            provar l'aplicació, de manera que l'aplicació no hagi de tornar a passar
+                            el procés d'inici del dispositiu. Per tancar el dispositiu virtual, feu
+                            clic al botó X situat a la part superior de l'emulador, trieu Surt al
+                            menú o premeu Control-Q a Windows o Comando-Q a macOS.</para>
+                        
+                    </listitem>
+                </itemizedlist>
+            </sect3>
+        </sect2>
+        <sect2>
+            <title>Utilitzant un dispositiu físic.</title>
+            <para>En aquesta última tasca, executareu la vostra aplicació en un dispositiu mòbil físic, 
+                com ara un telèfon o una tauleta. Sempre heu de provar les vostres aplicacions tant en 
+                dispositius virtuals com físics.</para>
+            <para>Què necessites:</para>
+            <itemizedlist>
+                <listitem>
+                    <para>Un dispositiu Android com ara un telèfon o una tauleta.</para>
+                </listitem>
+                <listitem>
+                    <para>Un cable de dades per connectar el dispositiu Android a l'ordinador mitjançant el 
+                        port USB</para>
+                </listitem>
+                <listitem>
+                    <para>Si utilitzeu un sistema Linux o Windows, és possible que hàgiu de fer
+                        passos addicionals per executar-vos en un dispositiu de maquinari. Consulteu
+                        la documentació Ús de dispositius de maquinari <link
+                            xlink:href="https://developer.android.com/studio/run/device"/>. És
+                        possible que també hàgiu d’instal·lar el controlador USB adequat per al
+                        vostre dispositiu. Per als controladors USB basats en Windows, vegeu
+                        Controladors USB OEM<link
+                            xlink:href="https://developer.android.com/studio/run/oem-usb"/>.</para>
+                </listitem>
+            </itemizedlist>
+            <sect3>
+                <title>Activeu la depuració USB</title>
+                <para> Per permetre que Android Studio es comuniqui amb el dispositiu, heu d'activar la
+                    depuració USB al dispositiu Android. Això està habilitat a la configuració <emphasis
+                        role="bold">Devoloper options</emphasis> (d'opcions del desenvolupador del
+                    vostre dispositiu). </para>
+                <para> A Android 4.2 i versions posteriors, la pantalla <emphasis role="bold"
+                        >Devoloper options</emphasis> (d'opcions del desenvolupador) està oculta per
+                    defecte. Per mostrar les opcions del desenvolupador i habilitar la depuració
+                    USB: </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>Al dispositiu, obriu <emphasis role="bold">Settings</emphasis>
+                            (Configuració), cerqueu <emphasis role="bold">About phone</emphasis>
+                            (Quant al telèfon), feu clic a Quant al telèfon i toqueu <emphasis
+                                role="bold">Build number</emphasis> (Generar número set
+                            vegades).</para>
+                    </listitem>
+                    <listitem>
+                        <para>Torneu a la pantalla anterior (Configuració / Sistema). Les opcions del 
+                            desenvolupador apareixen a la llista. Toqueu Opcions de desenvolupador.</para>
+                    </listitem>
+                    <listitem>
+                        <para>Escull  <emphasis role="bold">USB Debugging</emphasis></para>
+                    </listitem>
+                </itemizedlist>
+            </sect3>
+            <sect3>
+                <title>Executeu l'aplicació en un dispositiu</title>
+                <para>Ara podeu connectar el dispositiu i executar l'aplicació des d'Android
+                    Studio.</para>
+                <itemizedlist>
+                    <listitem>
+                        <para>Connecteu el dispositiu a la màquina de desenvolupament amb un cable USB.</para>
+                    </listitem>
+                    <listitem>
+                        <para>Feu clic al botó <emphasis role="bold">Run</emphasis> (Executa) <inlinemediaobject>
+                                <imageobject>
+                                    <imagedata fileref="img/04_Hola_mon_Android_Studio/035.jpg"/>
+                                </imageobject>
+                            </inlinemediaobject> la icona Android Studio Run a la barra d'eines.
+                            S'obre la finestra Selecciona <emphasis role="bold">Select Deployment
+                                Target</emphasis> amb la llista d'emuladors i dispositius connectats
+                            disponibles.</para>
+                    </listitem>
+                    <listitem>
+                        <para>Seleccioneu el dispositiu i feu clic a D'acord.</para>
+                    </listitem>
+                </itemizedlist>
+                <para>Android Studio instal·la i executa l'aplicació al dispositiu.</para>
+            </sect3>
+            <sect3>
+                <title>Resolució de problemes</title>
+                <para>Si el vostre Android Studio no reconeix el vostre dispositiu proveu el
+                    següent:</para>
+                <itemizedlist>
+                    <listitem>
+                        <para>Desconnecteu i torneu a connectar el dispositiu.</para>
+                    </listitem>
+                    <listitem>
+                        <para>Reinicieu Android Studio.</para>
+                    </listitem>
+                </itemizedlist>
+                <para>Si el vostre ordinador encara no troba el dispositiu o el declara "no
+                    autoritzat" seguiu els següents passos:</para>
+                <itemizedlist>
+                    <listitem>
+                        <para>Desconnecteu el dispositiu.</para>
+                    </listitem>
+                    <listitem>
+                        <para>Al dispositiu, obriu Opcions del desenvolupador a l'aplicació Configuració.</para>
+                    </listitem>
+                    <listitem>
+                        <para>Toqueu Revoca les autoritzacions de depuració USB.</para>
+                    </listitem>
+                    <listitem>
+                        <para>Torneu a connectar el dispositiu a l'ordinador.</para>
+                    </listitem>
+                    <listitem>
+                        <para>Quan se us demani, concediu autoritzacions.</para>
+                    </listitem>
+                </itemizedlist>
+                <para>És possible que hagueu d’instal·lar el controlador USB adequat per al vostre dispositiu. 
+                    Consulteu la documentació sobre l’ús de dispositius de maquinari.</para>
+            </sect3>
+        </sect2>
+        <sect2>
+            <title>Canvieu la configuració de Gradle de l'aplicació</title>
+            <para>En aquesta tasca canviarem alguna cosa sobre la configuració de l'aplicació al
+                fitxer <code>build.gradle(Module:app)</code> per aprendre a fer canvis i
+                sincronitzar-los amb el projecte d'Android Studio.</para>
+            <sect3>
+                <title>Canviar la minimum SDK version a l'aplicació</title>
+                <para>Següeix els següents passos:</para>
+                <itemizedlist>
+                    <listitem>
+                        <para>Expandiu la carpeta <emphasis role="bold">Gradle Scripts </emphasis>
+                            si no està oberta i cliqueu dues vegades a l'arxiu <emphasis role="bold"
+                                >build.gradle(Module:app)</emphasis></para>
+                        <para>El contingut de l'arxiu apareix a l'editor de codi.<inlinemediaobject>
+                                <imageobject>
+                                    <imagedata fileref="img/04_Hola_mon_Android_Studio/036.jpg"/>
+                                </imageobject>
+                            </inlinemediaobject></para>
+                    </listitem>
+                    <listitem>
+                        <para>Dins el block <code>defaultConfig</code> canvieu el valor de
+                                <code>minSdkVersion</code> a 17 (abans era 15).</para>
+                    </listitem>
+                </itemizedlist>
+                <para><inlinemediaobject>
+                        <imageobject>
+                            <imagedata fileref="img/04_Hola_mon_Android_Studio/037.jpg"/>
+                        </imageobject>
+                    </inlinemediaobject><inlinemediaobject>
+                        <imageobject>
+                            <imagedata fileref="img/04_Hola_mon_Android_Studio/038.jpg"/>
+                        </imageobject>
+                    </inlinemediaobject></para>
+                <para>L'editor de codi mostra una barra de notificació a la part superior amb
+                    l'enllaç Sincronitza ara.</para>
+                <para><inlinemediaobject>
+                        <imageobject>
+                            <imagedata fileref="img/04_Hola_mon_Android_Studio/039.jpg"/>
+                        </imageobject>
+                    </inlinemediaobject></para>
+                <para><inlinemediaobject>
+                        <imageobject>
+                            <imagedata fileref="img/04_Hola_mon_Android_Studio/040.jpg"/>
+                        </imageobject>
+                    </inlinemediaobject></para>
+            </sect3>
+            <sect3>
+                <title>Sincronitzeu la nova configuració de Gradle</title>
+                <para>Quan feu canvis als fitxers de configuració de la compilació en un projecte,
+                    Android Studio requereix que sincronitzeu els fitxers del projecte perquè pugui
+                    importar els canvis de configuració de la compilació i executar algunes
+                    comprovacions per assegurar-vos que la configuració no crearà errors de
+                    compilació.</para>
+                <para>Per sincronitzar els fitxers del projecte, feu clic<emphasis role="bold">Sync
+                        Now</emphasis>ara a la barra de notificacions que apareix en fer un canvi
+                    (com hem fet abans) o bé cliqueu la icona <emphasis role="bold"><emphasis
+                            role="bold">Sync Project with Gradle Files</emphasis></emphasis><inlinemediaobject>
+                        <imageobject>
+                            <imagedata fileref="img/04_Hola_mon_Android_Studio/041.jpg"/>
+                        </imageobject>
+                    </inlinemediaobject> a la barra d'eines.</para>
+                <para>Quan s'hagi acabat la sincronització de <code>Gradle build finished</code> de
+                    Gradle acabat apareix a l'extrem inferior esquerre de la finestra d'Android
+                    Studio.</para>
+                <para>Per obtenir una visió més profunda de Gradle, consulteu la descripció general
+                    del sistema de compilació i la configuració de la documentació de Gradle
+                    Builds.</para>
+            </sect3>
+        </sect2>
+        <sect2>
+            <title>Afegiu declaracions de registre a la vostra aplicació.</title>
+            <para>Afegir declaracions de registre a la vostra aplicació, que mostrarà missatges al
+                tauler Logcat. Els missatges de registre són una potent eina de depuració que podeu
+                utilitzar per comprovar valors, camins d’execució i informar d’excepcions.</para>
+            <sect3>
+                <title>Veient el panell Logcat</title>
+                <para>Per veure el panell <emphasis role="bold">Logcat</emphasis>, cliqueu a la
+                    pestanya <emphasis role="bold">Logcat</emphasis> a la part inferior de la
+                    finestra Android Studio, tal com es mostra a la figura següent.<inlinemediaobject>
+                        <imageobject>
+                            <imagedata fileref="img/04_Hola_mon_Android_Studio/042.jpg"/>
+                        </imageobject>
+                    </inlinemediaobject></para>
+                <itemizedlist>
+                    <listitem>
+                        <para>La pestanya Logcat per obrir i tancar el panell Logcat, que mostra
+                            informació sobre la vostra aplicació mentre s’executa. Si afegiu
+                            declaracions de registre a la vostra aplicació, els missatges de
+                            registre apareixeran aquí.</para>
+                    </listitem>
+                    <listitem>
+                        <para>El menú <code>log</code> de registre es defineix a Verbose (el valor
+                            per defecte), que mostra tots els missatges de registre. Altres
+                            paràmetres inclouen Depuració, Error, Informació i Advertiment <emphasis
+                                role="bold">Debug, Error, Info i Warm</emphasis></para>
+                    </listitem>
+                </itemizedlist>
+            </sect3>
+            <sect3>
+                <title>Afegir declaracions de log a la aplicació</title>
+                <para>Les declaracions de registre al codi de l'aplicació mostren els missatges al tauler 
+                    Logcat. Per exemple:</para>
+                <para><inlinemediaobject>
+                        <imageobject>
+                            <imagedata fileref="img/04_Hola_mon_Android_Studio/043.jpg"/>
+                        </imageobject>
+                    </inlinemediaobject></para>
+                <para>Les parts del missatge són:</para>
+                <itemizedlist>
+                    <listitem>
+                        <para><code>Log</code>: Classe <emphasis role="bold">Log</emphasis> per
+                            enviar missatges de registre al panell Logcat.</para>
+                    </listitem>
+                    <listitem>
+                        <para><code>d</code>: La configuració del nivell de registre de depuració
+                            per filtrar el missatge de registre es mostra al tauler Logcat. Altres
+                            nivells de registre són <code>e</code> per Error, <code>w</code> per
+                            Warn i <code>i</code> per info</para>
+                    </listitem>
+                    <listitem>
+                        <para>"<code>MainActivity</code>": El primer argument és una etiqueta que es
+                            pot utilitzar per filtrar missatges al tauler Logcat. Aquest és
+                            normalment el nom de l'activitat de la qual s'origina el missatge. Tot i
+                            això, podeu fer-ho tot el que us sigui útil per depurar.</para>
+                        <para>Per convenció, les etiquetes de registre es defineixen com a constants
+                            per a <code>l'Activity</code>:</para>
+                        <para><inlinemediaobject>
+                                <imageobject>
+                                    <imagedata fileref="img/04_Hola_mon_Android_Studio/044.jpg"/>
+                                </imageobject>
+                            </inlinemediaobject></para>
+                    </listitem>
+                    <listitem>
+                        <para><code>"Hello world":</code> El segon argument es l'actual
+                            missatge</para>
+                    </listitem>
+                </itemizedlist>
+                <para>Segueix aquestes pases.</para>
+                <itemizedlist>
+                    <listitem>
+                        <para> Obriu l'aplicació Hello World a l'estudi d'Android i obriu
+                                <code>MainActivity</code>. </para>
+                    </listitem>
+                    <listitem>
+                        <para>Per afegir importacions sense ambigüitats automàticament al vostre
+                            projecte (com ara <code>android.util.Log</code> necessari per utilitzar
+                            Log), trieu <emphasis role="bold">File >settings </emphasis> Fitxer>
+                            Configuració a Windows o <emphasis role="bold">Android Studio >
+                                Preferences</emphasis> Android Studio> Preferències a macOS</para>
+                    </listitem>
+                    <listitem>
+                        <para>Escolliu <emphasis role="bold">Editor > General >Auto
+                                Import</emphasis>. marqueu totes les caselles de selecció i
+                            configureu <emphasis role="bold">Insert imports on paste</emphasis> a
+                                <emphasis role="bold">All</emphasis></para>
+                    </listitem>
+                    <listitem>
+                        <para>Cliqueu <emphasis role="bold">Apply</emphasis> i després <emphasis
+                                role="bold">Ok</emphasis>.</para>
+                    </listitem>
+                    <listitem>
+                        <para>Al metode onCreate() de <code>Mainactivity </code> afegiu la següent
+                            sentència:</para>
+                        <para><inlinemediaobject>
+                                <imageobject>
+                                    <imagedata fileref="img/04_Hola_mon_Android_Studio/045.jpg"/>
+                                </imageobject>
+                            </inlinemediaobject></para>
+                    </listitem>
+                    <listitem>
+                        <para>El mètode <code>onCreate()</code> hauria de ser el següent:</para>
+                        <para>
+                            <programlisting><code>@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    Log.d("MainActivity", "Hello World");
+}</code></programlisting>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>Si el panell <code>Logcat</code> no està obert clica la pestanya
+                                <code>Logcat</code> a la part d'abaix d'Android Studio i obre
+                            la.</para>
+                    </listitem>
+                    <listitem>
+                        <para>Comproveu que el nom de l'aplicació siguin correctes.</para>
+                    </listitem>
+                    <listitem>
+                        <para>Canvieu el nivell del <code>log</code> al  panell <emphasis
+                                role="bold">Logcat</emphasis> del <emphasis role="bold"
+                                >Debug</emphasis> (o deixeu-ho com a verbose, ja que hi ha tants
+                            pocs missatges de registre).</para>
+                    </listitem>
+                    <listitem>
+                        <para>Executeu l'aplicació.</para>
+                    </listitem>
+                </itemizedlist>
+                <para>Apareixerà el seguen missatge al panell Logcat.</para>
+                <para>
+                    <programlisting>11-24 14:06:59.001 4696-4696/? D/MainActivity: Hello World</programlisting>
+                </para>
+            </sect3>
+        </sect2>
+    </sect1>
+</article>

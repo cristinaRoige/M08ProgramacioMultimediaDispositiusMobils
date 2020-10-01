@@ -1,0 +1,1412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+    version="5.0">
+    <info>
+        <title>Disseny i recursos per la IU.</title>
+        <author>
+            <personname>
+                <firstname>Cristina</firstname>
+                <surname>Roigé Gaja</surname>
+            </personname>
+        </author>
+    </info>
+    <para>En aquest capítol es descriu el disseny de la interfície d’usuari (IU) de la pantalla i
+        altres recursos que creeu per a la vostra aplicació, i el codi que faríeu servir per
+        respondre al toc d’un usuari d’un element de la IU.</para>
+    <sect1>
+        <title>Vistes</title>
+        <para>La interfície d’usuari (IU) consisteix en una jerarquia d’objectes anomenats vistes:
+            tots els elements de la pantalla són una vista <link
+                xlink:href="https://developer.android.com/reference/android/view/View.html"/>. La
+            classe view representa el bloc bàsic de tots els components de la interfície d’usuari i
+            la classe base per a les classes que proporcionen components de la interfície d’usuari
+            interactius, com ara botons, caselles de selecció i camps d’entrada de text. </para>
+        <para> Una view té una ubicació, expressada com un parell de coordenades esquerra i
+            superior, i dues dimensions, expressades com a amplada i alçada. La unitat per a la
+            ubicació i les dimensions és el píxel independent de la densitat (dp). </para>
+        <para>El sistema Android proporciona centenars de subclasses de visualització predefinides.
+            Les subclasses de visualització que s’utilitzen habitualment es descriuen en diverses
+            lliçons:</para>
+        <itemizedlist>
+            <listitem>
+                <para>TextView per mostrar text</para>
+                <para><link
+                        xlink:href="https://developer.android.com/reference/android/widget/TextView.html"
+                    /></para>
+            </listitem>
+            <listitem>
+                <para>EditText per permetre a l'usuari introduir i editar text.</para>
+                <para><link
+                        xlink:href="https://developer.android.com/reference/android/widget/EditText.html"
+                    /></para>
+            </listitem>
+            <listitem>
+                <para>Botó i altres elements que es poden fer clic (com ara RadioButton, CheckBox i
+                    Spinner) per proporcionar un comportament interactiu.</para>
+                <para><link
+                        xlink:href="https://developer.android.com/reference/android/widget/Button.html"
+                    /></para>
+                <para><link
+                        xlink:href="https://developer.android.com/reference/android/widget/RadioButton.html"
+                    /></para>
+                <para><link
+                        xlink:href="https://developer.android.com/reference/android/widget/CheckBox.html"
+                    /></para>
+                <para><link
+                        xlink:href="https://developer.android.com/reference/android/widget/Spinner.html"
+                    /></para>
+            </listitem>
+            <listitem>
+                <para>ScrollView i RecyclerView per mostrar elements desplaçables.</para>
+                <para><link
+                        xlink:href="https://developer.android.com/reference/android/widget/ScrollView.html"
+                    /></para>
+                <para><link
+                        xlink:href="https://developer.android.com/reference/android/support/v7/widget/RecyclerView.html"
+                    /></para>
+            </listitem>
+            <listitem>
+                <para>ImageView per mostrar imatges.</para>
+                <para><link
+                        xlink:href="https://developer.android.com/reference/android/widget/ImageView.html"
+                    /></para>
+            </listitem>
+            <listitem>
+                <para>ConstraintLayout i LinearLayout per contenir altres vistes i
+                    situar-les.</para>
+                <para><link
+                        xlink:href="https://developer.android.com/reference/android/support/constraint/ConstraintLayout.html"
+                    /></para>
+                <para><link
+                        xlink:href="https://developer.android.com/reference/android/widget/LinearLayout.html"
+                    /></para>
+            </listitem>
+        </itemizedlist>
+        <para>Podeu definir una visualització que aparegui a la pantalla i respondre a un toc de
+            l'usuari. També es pot definir una vista per acceptar l'entrada de text o ser invisible
+            fins que sigui necessari.</para>
+        <para>Podeu especificar view elements als fitxers de recursos de disseny. Els recursos de
+            disseny s’escriuen en XML i s’enumeren a la carpeta de disseny de la carpeta <emphasis
+                role="bold">res</emphasis> del tauler <emphasis role="bold"> Project >Android
+            </emphasis>Projecte> Android.</para>
+        <sect2>
+            <title>Grups ViewGroup</title>
+            <para>Els elements de view es poden agrupar dins d’un ViewGroup <link
+                    xlink:href="https://developer.android.com/reference/android/view/ViewGroup.html"
+                />, que actua com a contenidor. La relació és pare-fill, en què el pare és un
+                ViewGroup i el fill és un View o un altre ViewGroup. Els grups ViewGroup que
+                s'utilitzen habitualment són els següents:</para>
+            <itemizedlist>
+                <listitem>
+                    <para>ConstraintLayout: un grup que col·loca elements de la interfície d’usuari
+                        (elements de la vista infantil) mitjançant connexions de restricció a altres
+                        elements i a les vores del disseny (vista principal).</para>
+                </listitem>
+                <listitem>
+                    <para>ScrollView: grup que conté un altre element fill de viewi que permet
+                        desplaçar-se per l'element fill de view.</para>
+                </listitem>
+                <listitem>
+                    <para>RecyclerView: un grup que conté una llista d'altres elements de
+                        visualització o grups de ViewGroup i permet desplaçar-los afegint i
+                        eliminant elements de visualització de manera dinàmica de la
+                        pantalla.</para>
+                </listitem>
+            </itemizedlist>
+        </sect2>
+        <sect2>
+            <title>Disseny de grups ViewGroup</title>
+            <para>Els elements de view d’una pantalla s’organitzen en una jerarquia. A l'arrel
+                d'aquesta jerarquia hi ha un ViewGroup que conté el disseny de tota la pantalla. El
+                ViewGroup <link
+                    xlink:href="https://developer.android.com/reference/android/view/ViewGroup.html"
+                />pot contenir elements de visualització fills o altres grups ViewGroup tal com es
+                mostra a la figura següent</para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/04_Dissenys i recursos per a la IU/001.jpg"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para>A la figura de sobre:</para>
+            <orderedlist>
+                <listitem>
+                    <para>L'arrel del <code>viewGroup</code>.</para>
+                </listitem>
+                <listitem>
+                    <para>El primer conjunt d'elements de visualització fills i grups ViewGroup el
+                        pare principal dels quals és l'arrel.</para>
+                </listitem>
+            </orderedlist>
+            <para>Alguns grups de ViewGroup es designen com a dissenys (Layouts) perquè organitzen
+                elements de view secundaris d'una manera específica i normalment s'utilitzen com a
+                ViewGroup arrel. Alguns exemples de dissenys són:</para>
+            <itemizedlist>
+                <listitem>
+                    <para>ConstraintLayout: un grup d'elements de visualització secundaris que
+                        utilitzen restriccions, arestes i directrius per controlar com es posicionen
+                        els elements en relació amb altres elements del disseny. ConstraintLayout es
+                        va dissenyar per facilitar el clic i arrossegar els elements de
+                        Visualització a l'editor de disseny.</para>
+                    <para><link xlink:href="http://tools.android.com/tech-docs/layout-editor"
+                        /></para>
+                </listitem>
+                <listitem>
+                    <para>LinearLayout: grup de View filles posicionades i alineades horitzontalment
+                        o verticalment.</para>
+                    <para><link
+                            xlink:href="https://developer.android.com/reference/android/widget/LinearLayout.html"
+                        /></para>
+                </listitem>
+                <listitem>
+                    <para>RelativeLayout: un grup d'elements de visualització secundaris en què cada
+                        element està posicionat i alineat en relació amb altres elements del
+                        ViewGroup. En altres paraules, les posicions dels elements de visualització
+                        secundaris es poden descriure en relació entre ells o amb el ViewGroup
+                        principal.</para>
+                    <para><link
+                            xlink:href="https://developer.android.com/reference/android/widget/RelativeLayout.html"
+                        /></para>
+                </listitem>
+                <listitem>
+                    <para>TableLayout: un grup d'elements de visualització secundaris disposats en
+                        files i columnes.</para>
+                    <para><link
+                            xlink:href="https://developer.android.com/reference/android/widget/TableLayout.html"
+                        /></para>
+                </listitem>
+                <listitem>
+                    <para>FrameLayout: un grup d'elements de visualització secundaris en una pila.
+                        FrameLayout està dissenyat per bloquejar una àrea de la pantalla per mostrar
+                        una vista. Els elements de la vista infantil es dibuixen en una pila, amb el
+                        fill afegit més recent a la part superior. La mida de FrameLayout és la mida
+                        del seu element de visualització fill més gran.</para>
+                    <para><link
+                            xlink:href="https://developer.android.com/reference/android/widget/FrameLayout.html"
+                        /></para>
+                </listitem>
+                <listitem>
+                    <para>GridLayout: grup que col·loca els elements de visualització secundaris en
+                        una quadrícula rectangular que es pot desplaçar.</para>
+                    <para><link
+                            xlink:href="https://developer.android.com/reference/android/widget/FrameLayout.html"
+                        /></para>
+                </listitem>
+            </itemizedlist>
+            <para>
+                <informalfigure>
+                    <mediaobject>
+                        <imageobject>
+                            <imagedata fileref="img/04_Dissenys i recursos per a la IU/002.jpg"/>
+                        </imageobject>
+                    </mediaobject>
+                </informalfigure>
+            </para>
+            <para>Consell: Obteniu més informació sobre els diferents tipus de disseny a Objectes de
+                disseny comuns.
+                https://developer.android.com/guide/topics/ui/declaring-layout#CommonLayouts</para>
+            <para>Un exemple senzill de LinearLayout amb elements de visualització infantil es
+                mostra a continuació com a diagrama del fitxer de disseny (activity_main.xml),
+                juntament amb un diagrama de jerarquia (a la part superior dreta) i una captura de
+                pantalla del disseny real acabat (a la part inferior dreta).</para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/04_Dissenys i recursos per a la IU/003.jpg"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para>A la figura de sobre:</para>
+            <orderedlist>
+                <listitem>
+                    <para><code>LinearLayout</code>, l'arrel ViewGroup, conté tots els elements de
+                        vista secundaris en orientació vertical </para>
+                </listitem>
+                <listitem>
+                    <para><code>Button</code> (<code>button_toast</code>). El primer element de
+                            <code>view</code> fill apareix a la part superior de
+                            <code>LinearLayout</code>.</para>
+                </listitem>
+                <listitem>
+                    <para><code>TextView</code> (<code>show_count</code>). El segon element view
+                        fill apareix sota el primer element Vista fill del
+                        <code>LinearLayout</code>.</para>
+                </listitem>
+                <listitem>
+                    <para><code>Button</code> (<code>button count</code>). El tercer element view
+                        fill apareix sota el segon element Vista fill del
+                        <code>LinearLayout</code>.</para>
+                </listitem>
+            </orderedlist>
+            <para>La jerarquia del disseny pot arribar a ser complexa per a una aplicació que mostra
+                molts elements de visualització en una pantalla. És important entendre la jerarquia,
+                ja que afecta si els elements de visualització són visibles i la seva eficiència en
+                el dibuix.</para>
+            <para>Consell: Podeu explorar la jerarquia de disseny de la vostra aplicació mitjançant
+                Hierarchy Viewer<link
+                    xlink:href="https://developer.android.com/studio/profile/hierarchy-viewer"/>.
+                Mostra una visualització en arbre de la jerarquia i us permet analitzar el rendiment
+                dels elements de visualització en un dispositiu amb Android. Els problemes de
+                rendiment es tractaran en un capítol següent.</para>
+        </sect2>
+    </sect1>
+    <sect1>
+        <title>L'editor de maquetació</title>
+        <para>Podeu definir dissenys a l'editor de disposicions o introduint codi XML.</para>
+        <para>L'editor de disseny mostra una representació visual del codi XML. Podeu arrossegar els
+            elements de Visualització al tauler de disseny o pla i organitzar-los, canviar-ne la
+            mida i especificar-ne els atributs. De seguida veieu l’efecte dels canvis que
+            feu.</para>
+        <para>Per utilitzar l'editor de disseny, feu doble clic al fitxer de disseny XML
+            (activity_main.xml). L'editor de disseny apareix amb la pestanya Disseny a la part
+            inferior ressaltada. (Si la pestanya Text està ressaltada i veieu el codi XML, feu clic
+            a la pestanya Disseny.) Per a la plantilla Activitat buida, el disseny és el que es
+            mostra a la figura següent.</para>
+        <para><inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="img/04_Dissenys i recursos per a la IU/004.jpg"/>
+                </imageobject>
+            </inlinemediaobject></para>
+        <orderedlist>
+            <listitem>
+                <para>Fitxer de disseny XML (<emphasis role="bold"
+                    >activity_main.xml</emphasis>).</para>
+            </listitem>
+            <listitem>
+                <para>Pestanyes de disseny i text. Feu clic a Disseny per veure l'editor de disseny
+                    o a Text per veure el codi XML.</para>
+            </listitem>
+            <listitem>
+                <para>Tauler de paleta. El panell de la paleta proporciona una llista d'elements i
+                    dissenys de la interfície d'usuari. Afegiu un element o un disseny a la IU
+                    arrossegant-lo al tauler de disseny.</para>
+            </listitem>
+            <listitem>
+                <para>Arbre de components. El tauler de l'arbre de components mostra la jerarquia
+                    del disseny. Feu clic a un element de visualització o a ViewGroup en aquest
+                    panell per seleccionar-lo. Els elements de visualització s’organitzen en una
+                    jerarquia d’arbres de pares i fills, en què un fill hereta els atributs del seu
+                    pare. A la figura superior, TextView és un element secundari de
+                    ConstraintLayout.</para>
+            </listitem>
+            <listitem>
+                <para>Panells de disseny i pla. Arrossegueu Visualitza els elements des del tauler
+                    de la paleta fins al tauler de disseny o pla per situar-los al disseny. A la
+                    figura superior, el disseny només mostra un element: un TextView que mostra
+                    "Hello World".</para>
+            </listitem>
+            <listitem>
+                <para>Pestanya Atributs. Feu clic a Atributs per mostrar el tauler Atributs per
+                    configurar els atributs d'un element de visualització.</para>
+            </listitem>
+        </orderedlist>
+        <sect2>
+            <title>Barres d'eines de l'editor de disseny</title>
+            <para>Les barres d’eines de l’editor de disposicions proporcionen botons per configurar
+                el disseny i canviar-ne l’aspecte. La barra d'eines superior us permet configurar
+                l'aparença de la previsualització del disseny a l'editor de disseny:</para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/04_Dissenys i recursos per a la IU/005.jpg"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para>La figura superior mostra la barra d'eines superior de l'editor de disseny:</para>
+            <orderedlist>
+                <listitem>
+                    <para>Selecciona <emphasis role="bold">Desing Surface</emphasis>(superfície de
+                        disseny): seleccioneu <emphasis role="bold">Dessing</emphasis> per mostrar
+                        una previsualització en color dels elements de la interfície d’usuari al
+                        vostre disseny o <emphasis role="bold">Blueprint</emphasis> per mostrar
+                        només els contorns dels elements. Per veure els dos panells un al costat de
+                        l’altre, seleccioneu<emphasis role="bold">Desing + Blueprint</emphasis>
+                        Disseny + Plànol.</para>
+                </listitem>
+                <listitem>
+                    <para>Orientació a l’Editor: seleccioneu <emphasis role="bold">Portaint
+                        </emphasis> o <emphasis role="bold">Landscape</emphasis> per mostrar la
+                        previsualització en orientació vertical o horitzontal. El paràmetre
+                        d'orientació us permet previsualitzar les orientacions de disseny sense
+                        executar l'aplicació en un emulador o dispositiu. Per crear dissenys
+                        alternatius, seleccioneu <emphasis role="bold">Create Landscape
+                            Variation</emphasis> o altres variacions.</para>
+                </listitem>
+                <listitem>
+                    <para>Dispositiu a l'Editor: seleccioneu el tipus de dispositiu (telèfon /
+                        tauleta, Android TV o Android Wear).</para>
+                </listitem>
+                <listitem>
+                    <para>Versió de l'API a l'Editor: seleccioneu la versió d'Android que voleu
+                        utilitzar per mostrar la previsualització.</para>
+                </listitem>
+                <listitem>
+                    <para>Tema a l’Editor: seleccioneu un tema (com ara AppTheme) per aplicar a la
+                        previsualització.</para>
+                </listitem>
+                <listitem>
+                    <para>Configuració regional a l'editor: seleccioneu l'idioma i la configuració
+                        regional per a la previsualització. Aquesta llista només mostra els idiomes
+                        disponibles als recursos de la cadena (vegeu la lliçó sobre localització per
+                        obtenir detalls sobre com afegir idiomes). També podeu seleccionar Vista
+                        prèvia com a dreta a esquerra per veure el disseny com si s’hagués escollit
+                        un idioma RTL.</para>
+                </listitem>
+            </orderedlist>
+            <para>L’editor de disseny també ofereix una segona barra d’eines que us permet
+                configurar l’aspecte dels elements de la interfície d’usuari en un ConstraintLayout
+                i ampliar i reduir la vista prèvia:</para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/04_Dissenys i recursos per a la IU/006.jpg"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para>A la figura superior es mostra la barra d'edició
+                <code>ConstraintLayout</code></para>
+            <orderedlist>
+                <listitem>
+                    <para><emphasis role="bold">Shoe</emphasis>: seleccioneu <emphasis role="bold"
+                            >Show Constraints</emphasis> restriccions i <emphasis role="bold">Show
+                            Margins</emphasis> per mostrar-los a la previsualització o per deixar de
+                        mostrar-los.</para>
+                </listitem>
+                <listitem>
+                    <para><emphasis role="bold">Autoconnect </emphasis>Connexió automàtica: activeu
+                        o desactiveu la connexió automàtica. Amb Autoconnect activat, podeu
+                        arrossegar qualsevol element (com ara un botó) a qualsevol part d'un disseny
+                        per generar restriccions contra el disseny principal.</para>
+                </listitem>
+                <listitem>
+                    <para><emphasis role="bold">Clear All Constraints</emphasis>Esborra totes les
+                        restriccions: esborra totes les restriccions de tot el disseny.</para>
+                </listitem>
+                <listitem>
+                    <para><emphasis role="bold">Infer Constraints </emphasis>Infer restriccions:
+                        creeu restriccions per inferència.</para>
+                </listitem>
+                <listitem>
+                    <para><emphasis role="bold">Default Margins </emphasis>Default Margins: Set the
+                        default margins.</para>
+                </listitem>
+                <listitem>
+                    <para><emphasis role="bold">Pack</emphasis>: empaqueteu o amplieu els elements
+                        seleccionats</para>
+                </listitem>
+                <listitem>
+                    <para><emphasis role="bold">Aling </emphasis>Alinea: alinea els elements
+                        seleccionats.</para>
+                </listitem>
+                <listitem>
+                    <para><emphasis role="bold">Guidelines</emphasis>Directrius: afegiu directrius
+                        verticals o horitzontals.</para>
+                </listitem>
+                <listitem>
+                    <para><emphasis role="bold">Zoom controls</emphasis>Controls de zoom: apropar o
+                        allunyar.</para>
+                </listitem>
+            </orderedlist>
+        </sect2>
+        <sect2>
+            <title>Utilització de ConstraintLayout</title>
+            <para>L'editor de disseny ofereix més funcions a la pestanya Disseny quan utilitzeu
+                ConstraintLayout, inclosos els identificadors per definir restriccions.</para>
+            <para>Una restricció és una connexió o alineació a un altre element de la IU, al disseny
+                pare o a una directriu invisible. Cada restricció apareix com una línia que s’estén
+                des d’un mànec circular. Després de seleccionar un element de la interfície d'usuari
+                al tauler de l'arbre de components o fer-hi clic a l'editor de disseny, l'element
+                mostra un identificador de redimensionament a cada cantonada i un identificador de
+                restricció circular al centre de cada costat.</para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/04_Dissenys i recursos per a la IU/007.jpg"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para>La figura anterior mostra la limitació i la mida dels identificadors dels elements
+                de visualització en un disseny:</para>
+            <orderedlist>
+                <listitem>
+                    <para><emphasis role="bold">Resizing handle</emphasis> Manegador de
+                        redimensionament.</para>
+                </listitem>
+                <listitem>
+                    <para><emphasis role="bold">Línia i manegador de restricció:</emphasis> A la
+                        figura, la sestricció alinea el costat esquerre del Toast Button al costat
+                        esquerre del disseny</para>
+                </listitem>
+                <listitem>
+                    <para><emphasis role="bold">Manegador restricció</emphasis> sense línia de
+                        restricció</para>
+                </listitem>
+                <listitem>
+                    <para><emphasis role="bold">Manegador base de línia</emphasis> alinea la línia
+                        de base del text d'un element a la línia de base del text d'un altre
+                        element.</para>
+                </listitem>
+            </orderedlist>
+            <para>En blueprint o panells de disseny el seguiment de manegadors es pot veure en
+                l'element <code>TextView</code>.</para>
+            <itemizedlist>
+                <listitem>
+                    <para><emphasis role="bold">Controlador de restricció</emphasis>: per crear una
+                        restricció, feu clic a un controlador de restricció, que es mostra com un
+                        cercle a cada costat d'un element. A continuació, arrossegueu el cercle a un
+                        altre controlador de restricció o a un límit pare. Una línia en ziga-zaga
+                        representa la restricció.</para>
+                    <para><inlinemediaobject>
+                            <imageobject>
+                                <imagedata fileref="img/04_Dissenys i recursos per a la IU/008.jpg"/>
+                            </imageobject>
+                        </inlinemediaobject></para>
+                </listitem>
+                <listitem>
+                    <para><emphasis role="bold">Controlador de redimensionament</emphasis>: podeu
+                        arrossegar els mànecs quadrats per redimensionar l'element. Mentre
+                        arrossegueu, el mànec canvia a una cantonada en angle.</para>
+                    <para><inlinemediaobject>
+                            <imageobject>
+                                <imagedata fileref="img/04_Dissenys i recursos per a la IU/009.jpg"/>
+                            </imageobject>
+                        </inlinemediaobject></para>
+                    <para>Podeu arrossegar les nanses de redimensionament a cada cantonada de
+                        l’element de la interfície d’usuari per canviar-ne la mida, però, fent això,
+                        codifiqueu les dimensions d’amplada i alçada, cosa que hauríeu d’evitar per
+                        a la majoria d’elements perquè les dimensions codificades no s’adapten a
+                        densitats de pantalla diferents.</para>
+                </listitem>
+            </itemizedlist>
+        </sect2>
+        <sect2>
+            <title>Restricció d'un element d'interfície d'usuari</title>
+            <para>Per afegir una restricció a un element de la IU, feu clic al mànec circular i
+                arrossegueu una línia cap a un altre element o cap al costat d'un disseny, tal com
+                es mostra a les dues figures animades següents. Per eliminar una restricció d'un
+                element, feu clic al mànec circular</para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/04_Dissenys i recursos per a la IU/010.jpg"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/04_Dissenys i recursos per a la IU/011.jpg"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/04_Dissenys i recursos per a la IU/012.jpg"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/04_Dissenys i recursos per a la IU/013.jpg"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/04_Dissenys i recursos per a la IU/014.jpg"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/04_Dissenys i recursos per a la IU/015.jpg"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/04_Dissenys i recursos per a la IU/016.jpg"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/04_Dissenys i recursos per a la IU/018.jpg"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/04_Dissenys i recursos per a la IU/017.jpg"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para>Les restriccions que definiu a l'editor de disseny es creen com a atributs XML,
+                que podeu veure a la pestanya Text tal com es descriu a "Editar XML directament" en
+                aquest capítol. Per exemple, es crea el següent codi XML restringint la part
+                superior d'un element a la part superior del seu pare:</para>
+            <para>
+                <programlisting><code>app:layout_constraintTop_toTopOf="parent"</code></programlisting>
+            </para>
+        </sect2>
+        <sect2>
+            <title>Utilitzant una restricció de línia de base</title>
+            <para>Podeu alinear un element de la IU que contingui text, com ara TextView o Button,
+                amb un altre element de la IU que contingui text. Una restricció de línia de base us
+                permet restringir els elements perquè coincideixin amb les línies de base del text.
+                Seleccioneu l'element de la IU que tingui text i, a continuació, passeu el punter
+                sobre l'element fins que aparegui el botó de restricció de línia de base a sota de
+                l'element.</para>
+            <para>Feu clic al botó de restricció de línia de base. Apareix el manegador de la línia
+                de base, que parpelleja en verd, tal com es mostra a la figura. Arrossegueu una
+                línia de restricció de línia de base a la línia de base de l’altre element de la
+                interfície d’usuari.</para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/04_Dissenys i recursos per a la IU/019.jpg"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/04_Dissenys i recursos per a la IU/021.jpg"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para/>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/04_Dissenys i recursos per a la IU/020.jpg"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para>Consell: per obtenir un tutorial detallat sobre l’ús de ConstraintLayout,
+                consulteu Ús de ConstraintLayout per dissenyar les vostres visualitzacions.</para>
+            <para>https://codelabs.developers.google.com/codelabs/constraint-layout/index.html</para>
+        </sect2>
+        <sect2>
+            <title>Utilitzant el tauler Atributs</title>
+            <para>El panell Atributs ofereix accés a tots els atributs XML que podeu assignar a un
+                element de la IU. Podeu trobar els atributs (coneguts com a propietats) comuns a
+                totes les visualitzacions a la documentació de la classe View.</para>
+            <para>Per mostrar el tauler Atributs, feu clic a la pestanya Atributs a la part dreta de
+                l'editor de disseny. El panell Atributs inclou un tauler de mida quadrada anomenat
+                inspector de visualitzacions. Els símbols de l’inspector de visualització
+                representen la configuració d’alçada i amplada.</para>
+        </sect2>
+        <sect2>
+            <title>Creació de variants de disseny per a orientacions i dispositius</title>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/04_Dissenys i recursos per a la IU/022.jpg"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para>La figura superior mostra el tauler <emphasis role="bold"
+                >Attributes</emphasis></para>
+            <orderedlist>
+                <listitem>
+                    <para><emphasis role="bold">Vertical view size control</emphasis> (Control de
+                        mida de la vista vertical). El control de mida vertical, que apareix a la
+                        part superior i inferior de l'inspector de visualització, especifica la
+                        propietat layout_height. Els angles indiquen que aquest control de mida
+                        s'estableix en wrap_content, el que significa que l'element de la IU
+                        s'expandeix verticalment segons sigui necessari per ajustar-ne el contingut.
+                        El "8" indica un marge estàndard definit a 8 dp.</para>
+                </listitem>
+                <listitem>
+                    <para><emphasis role="bold">Horizontal view size control</emphasis> (Control de
+                        mida de la vista horitzontal). El control de mida horitzontal, que apareix a
+                        l'esquerra i a la dreta de l'inspector de visualització, especifica
+                        l'amplada layout_. Els angles indiquen que aquest control de mida
+                        s'estableix en wrap_content, el que significa que l'element de la IU
+                        s'expandeix horitzontalment segons calgui per ajustar-ne el contingut, fins
+                        a un marge de 8 dp.</para>
+                </listitem>
+                <listitem>
+                    <para><emphasis role="bold">Attributes</emphasis> (Botó de tancament del tauler
+                        d'atributs). Feu clic per tancar el tauler.</para>
+                </listitem>
+            </orderedlist>
+            <para>Els atributs <code>layout_width</code> i <code>layout_height</code> del tauler
+                    <emphasis role="bold">Attributes</emphasis> canvien a mesura que canvieu els
+                controls de mida horitzontals i verticals de l'inspector. Aquests atributs poden
+                adoptar un dels tres valors d'un <code>ConstraintLayout</code>.</para>
+            <itemizedlist>
+                <listitem>
+                    <para>El paràmetre<code> match_constraint </code>amplia l’element de la IU per
+                        omplir el seu pare per amplada o alçada fins a un marge, si s’estableix un
+                        marge. En aquest cas, el pare és <code>ConstraintLayout</code>.</para>
+                </listitem>
+                <listitem>
+                    <para>El paràmetre <code>wrap_content</code> redueix l'element de la IU a la
+                        mida del seu contingut. Si no hi ha contingut, l'element es torna
+                        invisible.</para>
+                </listitem>
+                <listitem>
+                    <para>Per especificar una mida fixa que s'ajusti a la mida de la pantalla del
+                        dispositiu, definiu un nombre de dp (píxels independents de la densitat).
+                        Per exemple, 16dp significa 16 píxels independents de la densitat.</para>
+                    <para><link
+                            xlink:href="https://developer.android.com/training/multiscreen/screendensities.html"
+                        /></para>
+                </listitem>
+            </itemizedlist>
+            <para><emphasis role="bold">Consell</emphasis>: si canvieu l'atribut layout_width
+                mitjançant el seu menú emergent, l'atribut layout_width es posa a zero perquè no hi
+                ha cap dimensió definida. Aquest paràmetre és el mateix que match_constraint:
+                l'element d'interfície d'usuari pot expandir-se tant com sigui possible per satisfer
+                les restriccions i els paràmetres de marge.</para>
+            <para>El panell Atributs ofereix accés a tots els atributs que podeu assignar a un
+                element de visualització. Podeu introduir valors per a cada atribut, com ara
+                l'android: id, background, textColor i atributs de text.</para>
+        </sect2>
+        <sect2>
+            <title>Creació de variants de disseny per a orientacions i dispositius.</title>
+            <para>Podeu previsualitzar el disseny d'una aplicació amb una orientació horitzontal i
+                amb diferents dispositius, sense haver d'executar l'aplicació en un emulador o
+                dispositiu.</para>
+            <para>Per previsualitzar el disseny d'una orientació diferent, feu clic al botó
+                Orientació a l'editor Botó Orientació a l'editor <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/04_Dissenys i recursos per a la IU/023.jpg"/>
+                    </imageobject>
+                </inlinemediaobject> a la barra d'eines superior. Per mostrar el disseny en
+                orientació horitzontal, seleccioneu Canvia a <emphasis role="bold"
+                    >Landscape</emphasis>. Per tornar a l'orientació vertical, seleccioneu Canvia a
+                    <emphasis role="bold">Portrait</emphasis>.</para>
+            <para>També podeu previsualitzar el disseny de diferents dispositius. Feu clic al botó
+                    <emphasis role="bold">Dispositiu a l'Editor a la barra</emphasis> d'eines
+                superior <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/04_Dissenys i recursos per a la IU/024.jpg"/>
+                    </imageobject>
+                </inlinemediaobject> i seleccioneu un altre dispositiu al menú desplegable. Per
+                exemple, seleccioneu Nexus 4, Nexus 5 i, a continuació, <emphasis role="bold"
+                    >Pixel</emphasis> per veure diferències en les previsualitzacions.</para>
+            <para>Per crear una variant del disseny estrictament per a l'orientació horitzontal,
+                deixant el disseny d'orientació vertical sol: feu clic al botó <emphasis role="bold"
+                    >Orientació a l'Editor</emphasis> i seleccioneu <emphasis role="bold">Crea
+                    variació horitzontal</emphasis>. S'obre una nova finestra d'editor amb la
+                pestanya <emphasis role="bold">land / activity_main.xml</emphasis> que mostra el
+                disseny de l'orientació horitzontal (horitzontal). Podeu canviar aquest disseny,
+                específicament per a l'orientació horitzontal, sense canviar l'orientació vertical
+                (vertical)</para>
+            <para>Al panell <emphasis role="bold">Project > Android</emphasis>, mireu al directori
+                de <emphasis role="bold">res >layout</emphasis>. Veureu que Android Studio us crea
+                automàticament la variant, anomenada <code>activity_main.xml (land)</code>.</para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/04_Dissenys i recursos per a la IU/025.jpg"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para>Per crear una variant de disseny per a pantalles de mida tauleta, feu clic al botó
+                    <emphasis role="bold">Orientació a l'Editor</emphasis> i seleccioneu Crea una
+                    <emphasis role="bold">variació de format x-large</emphasis>. S'obre una nova
+                finestra d'editor amb la pestanya <emphasis role="bold">xlarge /
+                    activity_main.xml</emphasis> que mostra el disseny d'un dispositiu de mida
+                tauleta. L’editor també tria un dispositiu de tauleta, com ara el Nexus 9 o el Nexus
+                10, per a la previsualització. Al panell <emphasis role="bold">Project >
+                    Android</emphasis>, mireu al directori de <emphasis role="bold">res
+                    >layout</emphasis>. Veureu que Android Studio us crea automàticament la variant,
+                anomenada <code>activity_main.xml (xlarge)</code>. Podeu canviar aquest disseny,
+                específicament per a tauletes, sense canviar la resta de dissenys.</para>
+        </sect2>
+    </sect1>
+    <sect1>
+        <title>Editar XML directament</title>
+        <para>De vegades és més ràpid i senzill editar el codi XML directament, especialment quan es
+            copia i enganxa el codi per a visualitzacions similars.</para>
+        <para>Per veure i editar el codi XML, obriu el fitxer de disseny XML. L'editor de <emphasis
+                role="bold">disseny</emphasis> apareix amb la pestanya Disseny a la part inferior
+            ressaltada. Feu clic a la pestanya <emphasis role="bold">Text</emphasis> per veure el
+            codi XML. A continuació es mostra el codi XML d'un LinearLayout amb dos elements de botó
+            amb un TextView al centre:</para>
+        <para>
+            <programlisting><code>&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.android.hellotoast.MainActivity">
+
+    &lt;Button
+        android:id="@+id/button_toast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorPrimary"
+        android:onClick="showToast"
+        android:text="@string/button_label_toast"
+        android:textColor="@android:color/white" />
+
+    &lt;TextView
+        android:id="@+id/show_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="#FFFF00"
+        android:text="@string/count_initial_value"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="160sp"
+        android:textStyle="bold"
+        android:layout_weight="1"/>
+
+    &lt;Button
+        android:id="@+id/button_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@color/colorPrimary"
+        android:onClick="countUp"
+        android:text="@string/button_label_count"
+        android:textColor="@android:color/white" />
+      &lt;/LinearLayout></code></programlisting>
+        </para>
+        <sect2>
+            <title>Atributs XML (propietats de visualització)</title>
+            <para>Les vistes tenen propietats que defineixen on apareix una vista a la pantalla, la
+                seva mida, la relació que té amb altres vistes i com respon a l'entrada de l'usuari.
+                Quan es defineixen vistes en XML o al tauler <emphasis role="bold"
+                    >Attributes</emphasis> de l'editor de disseny, les propietats es denominen
+                    <code>attributes</code>.</para>
+            <para>Per exemple, a la següent descripció XML d’un TextView, android: id, android:
+                layout_width, android: layout_height, android: background, són atributs XML que es
+                tradueixen automàticament a les propietats TextView:</para>
+            <para>
+                <programlisting><code>&lt;TextView
+       android:id="@+id/show_count"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:background="@color/myBackgroundColor"
+       android:textStyle="bold"
+       android:text="@string/count_initial_value" /></code></programlisting>
+            </para>
+            <para>Els atributs generalment tenen la següent sintàxi:</para>
+            <para><code>android:</code><emphasis role="italic"
+                    >attribute_name</emphasis>=<code>"</code><emphasis role="italic"
+                    >value</emphasis><code>"</code></para>
+            <para>Nom_atribut és el nom de l'atribut. El valor és una cadena amb el valor de
+                l'atribut. Per exemple:</para>
+            <para>
+                <programlisting><code>android:textStyle="bold"</code></programlisting>
+            </para>
+            <para>Si el valor és un recurs, com ara un color, el símbol @ especifica quin tipus de
+                recurs. Per exemple:</para>
+            <para>
+                <programlisting><code>android:background="@color/myBackgroundColor"</code></programlisting>
+            </para>
+            <para/>
+            <para><link
+                    xlink:href="https://google-developer-training.github.io/android-developer-fundamentals-course-concepts-v2/unit-1-get-started/lesson-1-build-your-first-app/1-2-c-layouts-and-resources-for-the-ui/1-2-c-layouts-and-resources-for-the-ui.html#style_related"
+                /></para>
+            <para>L'atribut de fons s'estableix en el recurs de color identificat com
+                myBackgroundColor, que es declara # FFF043. Els recursos de color es descriuen als
+                atributs relacionats amb l’estil d’aquest capítol</para>
+            <para>Cada <code>View</code> i <code>viewGroup</code> admet la seva pròpia varietat
+                d'atributs XML:</para>
+            <itemizedlist>
+                <listitem>
+                    <para>Alguns atributs són específics d’una subclasse de View. Per exemple, la
+                        subclasse <code>TextView</code> admet l'atribut <code>textSize</code>.
+                        Qualsevol element que estengui la subclasse <code>TextView</code> hereta
+                        aquests atributs específics de la subclasse.</para>
+                </listitem>
+                <listitem>
+                    <para>Alguns atributs són comuns a tots els elements de View, ja que s’hereten
+                        de la classe View de root. L’atribut android: id és un exemple.</para>
+                </listitem>
+            </itemizedlist>
+            <para>Per obtenir descripcions d’atributs específics, consulteu la secció de visió
+                general de la documentació de la classe de view.</para>
+            <para><link xlink:href="https://developer.android.com/reference/android/view/View.html"
+                /></para>
+        </sect2>
+        <sect2>
+            <title>Identificant una View</title>
+            <para>Per identificar una visualització de manera única i fer-ne referència des del
+                vostre codi, heu de donar-li un identificador. L'atribut android: id us permet
+                especificar un identificador únic: un identificador de recurs per a una
+                visualització.</para>
+            <para>Per exemple:</para>
+            <para>
+                <programlisting><code>android:id="@+id/button_count"</code></programlisting>
+            </para>
+            <para>La part @ <code>+ id / button_count</code> de l'atribut crea un identificador
+                anomenat <code>button_count</code> per a un botó (una subclasse de
+                <code>View</code>). Utilitzeu el símbol més (+) per indicar que esteu creant un
+                identificador nou.</para>
+        </sect2>
+        <sect2>
+            <title>Referència d'una vista</title>
+            <para>Per fer referència a un identificador de recurs existent, ometeu el símbol més
+                (+). Per exemple, per fer referència a una <code>View</code> pel seu identificador
+                en un altre atribut, com ara android: <code>layout_toLeftOf</code> (que es descriu a
+                la secció següent) per controlar la posició d'una vista, utilitzeu:</para>
+            <para>
+                <programlisting><code>android:layout_toLeftOf="@id/show_count"</code></programlisting>
+            </para>
+            <para>A l'atribut anterior, <code>@ id / show_count</code> fa referència a la
+                visualització amb l'identificador de recurs <code>show_count</code>. L'atribut situa
+                l'element que es troba "a l'esquerra" de la visualització
+                <code>show_count</code>.</para>
+        </sect2>
+        <sect2>
+            <title>Posicionant una View</title>
+            <para>Alguns atributs de posicionament relacionats amb el disseny són necessaris per a
+                un <code>View</code> o un <code>ViewGroup</code> i apareixen automàticament quan
+                afegiu View o ViewGroup al disseny XML.</para>
+            <sect3>
+                <title>Posicionament LinearLayout</title>
+                <para>Cal que LinearLayout tingui aquests atributs establerts:</para>
+                <itemizedlist>
+                    <listitem>
+                        <para>android:layout_width→<link
+                                xlink:href="https://developer.android.com/reference/android/view/ViewGroup.LayoutParams.html#attr_android:layout_width"
+                            /></para>
+                    </listitem>
+                    <listitem>
+                        <para>android:layout_height→<link
+                                xlink:href="https://developer.android.com/reference/android/view/ViewGroup.LayoutParams.html#attr_android:layout_height"
+                            /></para>
+                    </listitem>
+                    <listitem>
+                        <para>android:orientation→<link
+                                xlink:href="https://developer.android.com/reference/android/widget/LinearLayout.html#attr_android:orientation"
+                            /></para>
+                    </listitem>
+                </itemizedlist>
+                <para>Els atributs android: <code>layout_width</code> i android:
+                        <code>layout_height</code> poden adoptar un dels tres valors
+                    següents:</para>
+                <itemizedlist>
+                    <listitem>
+                        <para>match_parent amplia l'element de la IU per omplir el seu pare per
+                            amplada o alçada. Quan LinearLayout és el <code>ViewGroup</code> arrel,
+                            s'expandeix a la mida de la pantalla del dispositiu. Per a un element
+                            d'interfície d'usuari dins d'un <code>ViewGroup</code> arrel,
+                            s'expandeix a la mida del <code>ViewGroup</code> pare.</para>
+                    </listitem>
+                    <listitem>
+                        <para><code>wrap_content</code> redueix l'element de la IU a la mida del seu
+                            contingut. Si no hi ha contingut, l'element es torna invisible.</para>
+                    </listitem>
+                    <listitem>
+                        <para>Utilitzeu un nombre fix de dp (píxels independents de la densitat)
+                                <link
+                                xlink:href="https://developer.android.com/training/multiscreen/screendensities.html"
+                            /> per especificar una mida fixa, ajustada a la mida de la pantalla del
+                            dispositiu. Per exemple, 16dp significa 16 píxels independents de la
+                            densitat. Els píxels independents de la densitat i altres dimensions es
+                            descriuen a "Dimensions" d'aquest capítol.</para>
+                    </listitem>
+                </itemizedlist>
+                <para>La orientacio a Android pot ser:</para>
+                <itemizedlist>
+                    <listitem>
+                        <para>horitzontal: les vistes es disposen d'esquerra a dreta.</para>
+                    </listitem>
+                    <listitem>
+                        <para>vertical: les vistes es disposen de dalt a baix.</para>
+                    </listitem>
+                </itemizedlist>
+                <para>Altres atributs relacionats amb el disseny inclouen:</para>
+                <itemizedlist>
+                    <listitem>
+                        <para><code>android:layout_gravity</code>: Aquest atribut s’utilitza amb un element d’interfície d’usuari per controlar on es disposa l’element dins del seu pare. Per exemple, l'atribut següent centra l'element de la IU horitzontalment dins del ViewGroup pare:</para>
+                        <para>
+                            <programlisting><code>android:layout_gravity="center_horizontal"</code></programlisting>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>El <emphasis role="bold">padding</emphasis> és l’espai, mesurat en
+                            píxels independents de la densitat, entre les vores de l’element de la
+                            IU i el contingut de l’element, tal com es mostra a la figura
+                            següent.</para>
+                        <para><inlinemediaobject>
+                                <imageobject>
+                                    <imagedata fileref="img/04_Dissenys i recursos per a la IU/026.jpg"/>
+                                </imageobject>
+                            </inlinemediaobject></para>
+                        <para>A la figura anterior: (1) El Padding és l'espai entre les vores de
+                                <code>TextView</code> (línies discontínues) i el contingut de
+                                <code>TextView</code> (línia contínua). El farciment no és el mateix
+                            que el marge, que és l’espai des de la vora de la <code>View</code> fins
+                            al seu pare.</para>
+                        <para>La mida d'una <code>View</code> inclou el seu padding. Els atributs de
+                            padding més utilitzats són els següents:</para>
+                        <itemizedlist>
+                            <listitem>
+                                <para><code>android:padding:</code>Estableix el padding de les
+                                    quatre vores </para>
+                            </listitem>
+                            <listitem>
+                                <para><code>android:paddingTop</code> Estableix la vora
+                                    superior</para>
+                            </listitem>
+                            <listitem>
+                                <para><code>android:paddingBottom</code>Estableix la vora
+                                    inferior</para>
+                            </listitem>
+                            <listitem>
+                                <para><code>android:paddingLeft</code> Estableix la vora
+                                    esquerra</para>
+                            </listitem>
+                            <listitem>
+                                <para><code>android:paddingRight</code> Estableix la vora
+                                    dreta</para>
+                            </listitem>
+                            <listitem>
+                                <para><code>android:paddingStart</code> Estableix el paddding de
+                                    l'inici de la visualització, en píxels. Sútilitza en lloc dels
+                                    atributs de padding enumerats anteriorment, especialment amb
+                                    vistes llargues i estretes</para>
+                            </listitem>
+                            <listitem>
+                                <para><code>android:paddingEnd</code> Estableix el padding de la
+                                    vora fi de la view en píxels. S'utilitza amb
+                                        <code>Android:paddingStart</code></para>
+                            </listitem>
+                        </itemizedlist>
+                    </listitem>
+                </itemizedlist>
+                <para>Consell: per veure tots els atributs XML d’un LinearLayout, consulteu la
+                    secció Resum de la definició de classe LinearLayout. Altres dissenys arrel, com
+                    RelativeLayout i AbsoluteLayout, també enumeren els atributs XML a les seccions
+                    Resum</para>
+            </sect3>
+            <sect3>
+                <title>Posicionament Relatiu</title>
+                <para>Un altre grup de visualització útil per al disseny és RelativeLayout, que podeu utilitzar per posicionar els elements de visualització fills relatius entre si o amb els pares. Els atributs que podeu utilitzar amb RelativeLayout inclouen els següents:</para>
+                <itemizedlist>
+                    <listitem>
+                        <para><code>android:layout_toLeftOf:</code>situa la vora dreta d'aquesta vista a l'esquerra d'una altra vista (identificada pel seu identificador).</para>
+                        <para><link
+                                xlink:href="https://developer.android.com/reference/android/widget/RelativeLayout.LayoutParams.html#attr_android:layout_toLeftOf"
+                            /></para>
+                    </listitem>
+                    <listitem>
+                        <para><code>android:layout_toRightOf:</code>situa la vora esquerra d'aquesta
+                            vista a la dreta d'una altra vista (identificada pel seu identificador).  </para>
+                        <para><link
+                                xlink:href="https://developer.android.com/reference/android/widget/RelativeLayout.LayoutParams.html#attr_android:layout_toRightOf"
+                            /></para>
+                    </listitem>
+                    <listitem>
+                        <para><code>android:layout_centerHoritzontal:</code>centra aquesta vista horitzontalment dins del seu pare.</para>
+                        <para><link
+                                xlink:href="https://developer.android.com/reference/android/widget/RelativeLayout.LayoutParams.html#attr_android:layout_centerHorizontal"
+                            /></para>
+                    </listitem>
+                    <listitem>
+                        <para><code>android:layout_centerVertical:</code>centra aquesta vista verticalment dins del seu pare.</para>
+                        <para><link
+                                xlink:href="https://developer.android.com/reference/android/widget/RelativeLayout.LayoutParams.html#attr_android:layout_centerVertical"
+                            /></para>
+                    </listitem>
+                    <listitem>
+                        <para><code>android:layout_alignParentTop:</code>situa la vora superior d’aquesta vista perquè coincideixi amb la vora superior del pare.</para>
+                        <para><link
+                                xlink:href="https://developer.android.com/reference/android/widget/RelativeLayout.LayoutParams.html#attr_android:layout_alignParentTop"
+                            /></para>
+                    </listitem>
+                    <listitem>
+                        <para><code>android:layout_alignParentBottom:</code>situa la vora inferior d'aquesta vista perquè coincideixi amb la vora inferior del pare.</para>
+                        <para><link
+                                xlink:href="https://developer.android.com/reference/android/widget/RelativeLayout.LayoutParams.html#attr_android:layout_alignParentBottom"
+                            /></para>
+                    </listitem>
+                </itemizedlist>
+                <para>Per obtenir una llista completa dels atributs dels elements de visualització i
+                    visualització de subclasses d’un RelativeLayout, consulteu
+                    RelativeLayout.LayoutParams.</para>
+                <para><link
+                        xlink:href="https://developer.android.com/reference/android/widget/RelativeLayout.LayoutParams.html#attr_android:layout_alignParentBottom"
+                    /></para>
+            </sect3>
+        </sect2>
+        <sect2>
+            <title>Atributs relacionats amb l'estil</title>
+            <para>Especifiqueu atributs d'estil per personalitzar l'aparença d'una vista. Una vista
+                que no té atributs d’estil, com ara <code>android: textColor</code>, android:
+                textSize i <code>android: background</code>, adopta els estils definits al tema de
+                l’aplicació.</para>
+            <para>Els següents són atributs relacionats amb l’estil que s’utilitzen a la lliçó sobre l’ús de l’editor de disseny:</para>
+            <itemizedlist>
+                <listitem>
+                    <para><code>android:background</code>: especifica un color o un recurs dibuixable per utilitzar com a fons.</para>
+                </listitem>
+                <listitem>
+                    <para><code>android:text</code> especifica el text que es mostrarà a la vista.</para>
+                </listitem>
+                <listitem>
+                    <para><code>android:textColor</code> especifica el color del text.</para>
+                </listitem>
+                <listitem>
+                    <para><code>android:textSize</code> especifica la mida del text.</para>
+                </listitem>
+                <listitem>
+                    <para><code>android:textStyle</code> especifica l’estil de text, com ara negreta.</para>
+                </listitem>
+            </itemizedlist>
+        </sect2>
+    </sect1>
+    <sect1>
+        <title>Fitxer de recursos</title>
+        <para>Els fitxers de recursos són una manera de separar els valors estàtics del codi, de
+            manera que no haureu de canviar el codi per canviar-los. Podeu emmagatzemar totes les
+            cadenes, dissenys, dimensions, colors, estils i text del menú per separat en fitxers de
+            recursos.</para>
+        <para>Els fitxers de recursos s’emmagatzemen a carpetes ubicades a la carpeta res quan es
+            visualitza el panell Projecte> Android. Aquestes carpetes inclouen</para>
+        <para>
+            <itemizedlist>
+                <listitem>
+                    <para><code>drawable</code> imatges i icones</para>
+                </listitem>
+                <listitem>
+                    <para><code>layout</code> fitxers de recursos de disseny</para>
+                </listitem>
+                <listitem>
+                    <para><code>menu</code> menú items</para>
+                </listitem>
+                <listitem>
+                    <para><code>mipmap </code>Per a col·leccions d'icones d'aplicacions
+                        pre-calculades i optimitzades que utilitza el Launcher</para>
+                </listitem>
+                <listitem>
+                    <para><code>values</code>per a colors, dimensions, cadenes i estils (atributs
+                        del tema)</para>
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>La sintaxi per fer referència a un recurs en un disseny XML és la següent:</para>
+        <para><code>@</code><emphasis role="italic">package_name</emphasis><code>:</code><emphasis
+                role="italic">resource_type</emphasis><code>/</code><emphasis role="italic"
+                >resource_name</emphasis></para>
+        <itemizedlist>
+            <listitem>
+                <para><code>package_name:</code> és el nom del paquet on es troba el recurs. El nom del paquet no és obligatori quan feu referència als recursos emmagatzemats a la carpeta res del projecte, perquè aquests recursos provenen del mateix paquet.</para>
+            </listitem>
+            <listitem>
+                <para><code>resource_type:</code> és la subclasse R del tipus de recurs. Vegeu Tipus
+                    de recursos per obtenir més informació sobre els tipus de recursos i sobre com
+                    fer-los referència.</para>
+                <para><link
+                        xlink:href="https://developer.android.com/guide/topics/resources/available-resources.html"
+                    /></para>
+            </listitem>
+            <listitem>
+                <para><code>resource_name:</code> és el nom del fitxer del recurs sense l'extensió o el valor de l'atribut android: name a l'element XML.</para>
+            </listitem>
+        </itemizedlist>
+        <para>Per exemple, la següent instrucció de disseny XML estableix l'atribut android: text a un recurs de cadena:</para>
+        <para>
+            <programlisting><code>android:text="@string/button_label_toast"</code></programlisting>
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>No s'inclou cap <code>package_name</code>, perquè el recurs s'emmagatzema al
+                    fitxer <code>strings.xml</code> del projecte.</para>
+            </listitem>
+            <listitem>
+                <para>el <code>resource_type</code> és un string</para>
+            </listitem>
+            <listitem>
+                <para>el <code>resource_type</code> es <code>button_label_toast</code></para>
+            </listitem>
+        </itemizedlist>
+        <para>Un altre exemple: aquesta declaració de disseny XML estableix l'atribut <code>android:
+                background</code> a un recurs de <code>color</code> i, ja que el recurs es defineix
+            al projecte (al fitxer colors.xml), no s'especifica el nom_paquet:</para>
+        <para>
+            <programlisting><code>android:background="@color/colorPrimary"</code></programlisting>
+        </para>
+        <para>A l'exemple següent, la sentència de disseny XML defineix l'atribut<code> android:
+                textColor</code> a un recurs de <code>color</code>. Tanmateix, el recurs no està
+            definit al projecte, sinó que el subministra Android, de manera que heu d'especificar el
+                <code>package_name</code>, que és android, seguit de dos punts:</para>
+        <para>
+            <programlisting><code>android:textColor="@android:color/white"</code></programlisting>
+        </para>
+        <para><emphasis role="bold">Consell</emphasis>: per obtenir més informació sobre l'accés als
+            recursos des del codi, consulteu Accés als recursos. Per a constants de color d'Android,
+            consulteu els recursos R.color estàndard d'Android.</para>
+        <para><link
+                xlink:href="https://developer.android.com/guide/topics/resources/accessing-resources.html"
+            /></para>
+        <para><link
+                xlink:href="https://developer.android.com/guide/topics/resources/accessing-resources.html"
+            /></para>
+        <sect2>
+            <title> fitxers de valors de recursos</title>
+            <para>La conservació de valors com les cadenes i els colors en fitxers de recursos
+                separats facilita la seva gestió, sobretot si els feu servir més d’una vegada als
+                dissenys.</para>
+            <para>Per exemple, és essencial mantenir les cadenes en un fitxer de recursos
+                independent per traduir i localitzar la vostra aplicació, de manera que pugueu crear
+                un fitxer de recursos de cadenes per a cada idioma sense canviar el codi. Els
+                fitxers de recursos per a imatges, colors, dimensions i altres atributs són útils
+                per desenvolupar una aplicació per a diferents mides i orientacions de pantalla del
+                dispositiu.</para>
+        </sect2>
+        <sect2>
+            <title>Strings</title>
+            <para>Els recursos de cadena es troben al fitxer strings.xml (dins de res> valors al panell Projecte> Android). Podeu editar aquest fitxer directament obrint-lo al tauler de l'editor:</para>
+            <para>
+                <programlisting><code>&lt;resources>
+    &lt;string name="app_name">Hello Toast&lt;/string>
+    &lt;string name="button_label_count">Count&lt;/string>
+    &lt;string name="button_label_toast">Toast&lt;/string>
+    &lt;string name="count_initial_value">0&lt;/string>
+&lt;/resources></code></programlisting>
+            </para>
+            <para>El nom (per exemple, button_label_count) és el nom del recurs que utilitzeu al vostre codi XML, com en l'atribut següent:</para>
+            <para>
+                <programlisting><code>android:text="@string/button_label_count"</code></programlisting>
+            </para>
+            <para> El valor de la cadena d'aquest nom és la paraula (Recompte) inclosa dins de les
+                etiquetes &lt;string> &lt;/ string>. (No feu servir cometes a menys que les cometes
+                formin part del valor de la cadena.) </para>
+        </sect2>
+        <sect2>
+            <title>Extracció de cadenes de recursos</title>
+            <para>També heu d’extreure cadenes codificades en un fitxer de disseny XML per encadenar recursos.</para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/04_Dissenys i recursos per a la IU/027.jpg"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para>Per extreure una cadena codificada en un disseny XML, seguiu aquests passos, tal com es mostra a la figura anterior:</para>
+            <orderedlist>
+                <listitem>
+                    <para>Feu clic a la cadena codificada i premeu Alt-Retorn al Windows o
+                        Opció-Retorn al Mac OS X</para>
+                </listitem>
+                <listitem>
+                    <para>Seleccioneu <emphasis role="bold">Extract string
+                        resource.</emphasis></para>
+                </listitem>
+                <listitem>
+                    <para>Edita el valor del string <emphasis role="bold">Resource
+                        name</emphasis>.</para>
+                </listitem>
+            </orderedlist>
+            <para>A continuació, podeu utilitzar el nom del recurs al vostre codi XML. Utilitzeu
+                    l'expressió<code>"@string/resource_name"</code> (incloses les cometes) per fer
+                referència al recurs de cadena</para>
+            <para>
+                <programlisting><code>android:text="@string/button_label_count"</code></programlisting>
+            </para>
+        </sect2>
+        <sect2>
+            <title>Colors</title>
+            <para>Els recursos de color es troben al fitxer <code>colors.xml</code> (dins de
+                    <emphasis role="bold">res > values</emphasis> al panell <emphasis role="bold"
+                    >Project > Android</emphasis></para>
+            <para>
+                <programlisting><code>&lt;resources>
+    &lt;color name="colorPrimary">#3F51B5&lt;/color>
+    &lt;color name="colorPrimaryDark">#303F9F&lt;/color>
+    &lt;color name="colorAccent">#FF4081&lt;/color>
+    &lt;color name="myBackgroundColor">#FFF043&lt;/color>
+&lt;/resources></code></programlisting>
+            </para>
+            <para>El nom (per exemple, <code>colorPrimary</code> és el nom del recurs que utilitzeu
+                al vostre codi XML</para>
+            <para>
+                <programlisting><code>android:textColor="@color/colorPrimary"</code></programlisting>
+            </para>
+            <para>El valor de color d'aquest nom és el valor de color hexadecimal (# 3F51B5) inclòs
+                a les etiquetes &lt;color> &lt;/color>. El valor hexadecimal especifica els valors
+                vermell, verd i blau (RGB). El valor sempre comença amb un caràcter de lliura (#),
+                seguit de la informació Alfa-Vermell-Verd-Blau. Per exemple, el valor hexadecimal
+                del negre és # 000000, mentre que el valor hexadecimal per a una variant del blau
+                cel és # 559fe3. Els valors de color base s’enumeren a la documentació de la classe
+                    Color.<link
+                    xlink:href="https://developer.android.com/reference/android/graphics/Color.html"
+                /></para>
+            <para>El color primari és un dels colors base predefinits i s’utilitza per a la barra
+                d’aplicacions. En una aplicació de producció, podeu, per exemple, personalitzar-la
+                perquè s’adapti a la vostra marca. L’ús dels colors base per a altres elements de la
+                interfície d’usuari crea una interfície d’usuari uniforme.</para>
+            <para>Consell: per a l’especificació de Disseny de materials per als colors d’Android,
+                consulteu Estil i ús del tema del material. Per obtenir valors hexadecimals de color
+                comuns, vegeu Codis de colors hexadecimals de color. Per a constants de color
+                d'Android, consulteu els recursos R.color estàndard d'Android.</para>
+            <para>Podeu veure un petit bloc de l’elecció del color al marge esquerre al costat de la
+                declaració de recursos de color a colors.xml i també al marge esquerre al costat de
+                l’atribut que utilitza el nom del recurs al fitxer XML de disseny.</para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/04_Dissenys i recursos per a la IU/028.jpg"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para>Consell: per veure el color en una finestra emergent, activeu la funció de
+                documentació Autopopup. Seleccioneu Preferències> Editor> General> Compleció de codi
+                i seleccioneu l'opció "Documentació automàtica en (ms)". A continuació, podeu passar
+                el cursor sobre el nom del recurs de color per veure el color.</para>
+        </sect2>
+        <sect2>
+            <title>Dimensions</title>
+            <para>Per fer que les dimensions siguin més fàcils de gestionar, heu de separar-les del
+                codi, sobretot si heu d’ajustar el disseny per a dispositius amb densitats de
+                pantalla diferents. Mantenir les dimensions separades del codi també facilita la
+                mida uniforme dels elements de la interfície d’usuari i canviar la mida de diversos
+                elements canviant un recurs de dimensió. </para>
+            <para>Els recursos de dimensió es troben al fitxer dimens.xml (dins de <emphasis
+                    role="bold">res > values</emphasis> al panell <emphasis role="bold">Project >
+                    Android</emphasis>). El fitxer dimens.xml pot ser una carpeta que contingui més
+                d’un fitxer dimens.xml, un per a cada resolució de pantalla del dispositiu. Podeu
+                editar cada fitxer dimens.xml directament: </para>
+            <para>
+                <programlisting><code>&lt;resources>
+    &lt;!-- Default screen margins, per the Android Design guidelines. -->
+    &lt;dimen name="activity_horizontal_margin">16dp&lt;/dimen>
+    &lt;dimen name="activity_vertical_margin">16dp&lt;/dimen>
+    &lt;dimen name="my_view_width">300dp&lt;/dimen>
+    &lt;dimen name="count_text_size">200sp&lt;/dimen>
+    &lt;dimen name="counter_height">300dp&lt;/dimen>
+&lt;/resources></code></programlisting>
+            </para>
+            <para>El nom (per exemple, activity_horizontal_margin) és el nom del recurs que utilitzeu al codi XML:</para>
+            <para>
+                <programlisting><code>android:paddingLeft="@dimen/activity_horizontal_margin"</code></programlisting>
+            </para>
+            <para>El valor d'aquest nom és la mesura (16dp) inclosa a les etiquetes &lt;dimen> &lt;/dimen>
+            </para>
+            <para>Podeu extreure dimensions de la mateixa manera que les cadenes:
+            </para>
+            <orderedlist>
+                <listitem>
+                    <para>Clica a hard-coded dimension i premeu <emphasis role="bold">Alt +
+                            enter</emphasis> a Windows o premeu <emphasis role="bold"
+                            >Option-Return</emphasis> in MacOS</para>
+                </listitem>
+                <listitem>
+                    <para>Selecciona <emphasis role="bold">Extract dimension
+                        resource</emphasis></para>
+                </listitem>
+                <listitem>
+                    <para>Edita el valor de la dimensió <emphasis role="bold">Resource
+                            name</emphasis></para>
+                </listitem>
+            </orderedlist>
+            <para>Els píxels independents de la densitat (dp) són independents de la resolució de la pantalla. Per exemple, els 10 píxels (10 píxels fixos) semblen molt més petits en una pantalla de resolució més alta, però Android escala 10 dp (10 píxels independents del dispositiu) perquè es vegin correctament en diferents pantalles de resolució. Les mides de text també es poden configurar perquè es vegin bé en diferents pantalles de resolució mitjançant mides de píxels escalats (sp).</para>
+            <para><emphasis role="bold">Consell</emphasis>: per obtenir més informació sobre les
+                unitats dp i sp, consulteu Suport a diferents densitats.</para>
+        </sect2>
+        <sect2>
+            <title>Estils</title>
+            <para>Un estil és un recurs que especifica atributs comuns com ara alçada, farcit, color
+                de la lletra, mida de la lletra i color de fons. Els estils estan destinats a
+                atributs que modifiquen l’aspecte de la vista.</para>
+            <para>Els estils es defineixen al fitxer styles.xml (dins de <emphasis role="bold">res >
+                    values</emphasis> al panell <emphasis role="bold">Project > Android</emphasis>).
+                Podeu editar aquest fitxer directament. Els estils es tracten en un capítol
+                posterior, juntament amb l’especificació del disseny de materials.</para>
+        </sect2>
+        <sect2>
+            <title>Altres fitxers de recursos</title>
+            <para>Android Studio defineix altres recursos que es tracten en altres capítols:</para>
+            <itemizedlist>
+                <listitem>
+                    <para>Imatges i icones: la carpeta <code>drawable</code> proporciona recursos
+                        per a icones i imatges. Si l'aplicació no té cap carpeta dibuixable, podeu
+                        crear-la manualment a la carpeta res. Per obtenir més informació sobre
+                        recursos dibuixables, consulteu <code>Drawable Resources</code>
+                        <link
+                            xlink:href="https://developer.android.com/guide/topics/resources/drawable-resource.html"
+                        /> a la secció Recursos d'aplicacions de la Guia per a desenvolupadors
+                        d'Android.</para>
+                </listitem>
+                <listitem>
+                    <para>Icones optimitzades: la carpeta <code>mipmap</code> normalment conté
+                        col·leccions optimitzades i pre-calculades d’icones d’aplicacions que
+                        utilitza el Launcher. Amplieu la carpeta per veure que les versions de les
+                        icones s’emmagatzemen com a recursos per a diferents densitats de pantalla. </para>
+                </listitem>
+                <listitem>
+                    <para>Menús: podeu utilitzar un fitxer de recursos XML per definir elements de
+                        menú i emmagatzemar-los al vostre projecte a la carpeta de menú. Els menús
+                        es descriuen en un capítol posterior. </para>
+                </listitem>
+            </itemizedlist>
+        </sect2>
+    </sect1>
+    <sect1>
+        <title>Respondre als clics de visualització</title>
+        <para>Un esdeveniment de clic es produeix quan l’usuari toca o fa clic en una visualització on es pot fer clic, com ara un botó, ImageButton, ImageView o FloatingActionButton. Quan es produeix un esdeveniment d’aquest tipus, el vostre codi realitza una acció. Per fer funcionar aquest patró, heu de:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>Escriviu un mètode Java que realitzi l'acció específica que vulgueu que faci l'aplicació quan es produeixi aquest esdeveniment. Normalment, aquest mètode s’anomena gestor d’esdeveniments.</para>
+            </listitem>
+            <listitem>
+                <para>Escriviu un mètode Java que realitzi l'acció específica que vulgueu que faci l'aplicació quan es produeixi aquest esdeveniment. Normalment, aquest mètode s’anomena gestor d’esdeveniments.</para>
+            </listitem>
+        </itemizedlist>
+        <sect2>
+            <title>l'atribut onClick</title>
+            <para>Android Studio proporciona una drecera per configurar una <code>View</code> on es
+                pot fer clic i per associar un controlador d’esdeveniments a la visualització:
+                utilitzeu l’atribut <code>android: onClick </code>al disseny XML. </para>
+            <para>Per exemple, l'atribut XML següent estableix un botó perquè es pugui fer clic i
+                estableix showToast () com a gestor d'esdeveniments: </para>
+            <para>
+                <programlisting><code>&lt;Button
+    android:id="@+id/button_toast"
+    android:onClick="showToast"</code></programlisting>
+            </para>
+            <para>Quan l'usuari toca el botó button_toast, l'atribut android: onClick del botó crida
+                al mètode showToast (). Per tal de treballar amb l'atribut android: onClick, el
+                mètode showToast () ha de ser públic i ha de ser nul. Per saber quina visualització
+                crida el mètode, el mètode showToast () ha de requerir un paràmetre de
+                visualització. </para>
+            <para>Android Studio proporciona una drecera per crear un registre de controlador d'esdeveniments (un marcador de posició per a un mètode que podeu emplenar més endavant) al codi de l'activitat associada al disseny XML. Seguiu aquests passos:
+            </para>
+            <orderedlist>
+                <listitem>
+                    <para>Dins del fitxer de disseny XML (com <code>activity_main.xml</code>), feu
+                        clic al nom del mètode a la declaració d'atribut android: onClick
+                            (<code>showToast</code> al fragment XML superior). </para>
+                </listitem>
+                <listitem>
+                    <para>Premeu <emphasis role="bold">Alt-Enter</emphasis> a Windows o <emphasis
+                            role="bold">Option-Return</emphasis> a Mac OS X i seleccioneu Crea un
+                        gestor d'esdeveniments onClick <emphasis role="bold">Create onClick event
+                            handler</emphasis>.. </para>
+                </listitem>
+                <listitem>
+                    <para>Seleccioneu <code>Activity</code> associada al fitxer de disseny (com
+                            <emphasis role="bold">MainActivity</emphasis>) i feu clic a <emphasis
+                            role="bold">Ok</emphasis>. Android Studio crea un mètode de marcador de
+                        posició de marcador de posició a MainActivity.java com es mostra a
+                        continuació. </para>
+                </listitem>
+            </orderedlist>
+            <para>
+                <programlisting><code>public void showToast(View view) {
+        // Do something in response to the button click.
+}</code></programlisting>
+            </para>
+        </sect2>
+        <sect2>
+            <title>Actualitzant una vista</title>
+            <para>Per actualitzar una visualització, per exemple per substituir el text en una visualització de text, el vostre codi primer ha d’instanciar un objecte des de la visualització. El vostre codi pot actualitzar l'objecte, que actualitza la pantalla.
+            </para>
+            <para>Per referir-vos a la visualització del vostre codi, utilitzeu el mètode findViewById () de la classe View, que busca una vista basada en l'identificador del recurs. Per exemple, la declaració següent defineix mShowCount com TextView al disseny amb l'identificador de recurs show_count:
+            </para>
+            <para>
+                <programlisting><code>mShowCount = (TextView) findViewById(R.id.show_count);</code></programlisting>
+            </para>
+            <para>A partir d’aquest moment, el vostre codi pot utilitzar <code>mShowCount</code> per
+                representar <code>TextView</code>, de manera que quan actualitzeu mShowCount,
+                s’actualitzarà <code>TextView</code>. </para>
+            <para>Per exemple, quan es prem el botó següent amb l'atribut <code>android:
+                    onClick</code>, <code>onClick</code> crida al mètode <code>countUp ()</code>: </para>
+            <para>
+                <programlisting><code>android:onClick="countUp"</code></programlisting>
+            </para>
+            <para>Podeu implementar countUp () per incrementar el recompte, convertir el recompte en
+                una cadena i establir la cadena com a text de l'objecte mShowCount: </para>
+            <para>
+                <programlisting><code>public void countUp(View view) {
+        mCount++;
+        if (mShowCount != null)
+            mShowCount.setText(Integer.toString(mCount));
+}</code></programlisting>
+            </para>
+            <para>Com que ja havíeu associat mShowCount amb TextView per mostrar el recompte, el mètode mShowCount.setText () actualitza TextView a la pantalla.
+            </para>
+        </sect2>
+    </sect1>
+</article>

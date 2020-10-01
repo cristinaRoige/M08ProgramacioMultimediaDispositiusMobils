@@ -1,0 +1,1020 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<article xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <info>
+        <title>Apunts Android 02 primera aplicació Android</title>
+        <author>
+            <personname>
+                <firstname>Cristina</firstname>
+                <surname>Roigé Gaja</surname>
+            </personname>
+        </author>
+    </info>
+    <sect1>
+        <title>La primera App</title>
+        <para>En aquest capítol es descriu com desenvolupar aplicacions mitjançant Android Studio, que és un entorn
+            de desenvolupament integrat (IDE) per a Android.</para>
+    </sect1>
+    <sect1>
+        <title>El procés de desenvolupament</title>
+        <para>Una app d'Android comença amb una idea i una definició dels requisits necessaris per
+            fer-la realitat. És possible que vulgueu esbossar interfícies d'usuari (UI) per a les
+            diverses funcions de l¡aplicació. Per mostrar com seria una interfície d'usuari i com
+            funcionaria. utilitzeu dibuixos, maquetes i prototips. </para>
+        <para>Quan estigueu a punt per començar a codificar, utilitzeu Android Studio per seguir els
+            passos següents: </para>
+        <para><inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="img/02-primera-aplicacio-android/001.jpg"/>
+                </imageobject>
+            </inlinemediaobject></para>
+        <orderedlist>
+            <listitem>
+                <para>Creeu el projecte a Android Studio i trieu una plantilla adequada.</para>
+            </listitem>
+            <listitem>
+                <para>Definiu un disseny per a cada pantalla que tingui elements d'interfície
+                    d'usuari. Podeu col·locar elements de la interfície d'usuari a la pantalla
+                    mitjançant l'editor de disseny o escriure codi directament a l'extensible
+                    Markup Language (XML).</para>
+            </listitem>
+            <listitem>
+                <para>Escriviu codi mitjançant el llenguatge de programació Java. Creeu codi
+                    font per a tots els components de l'aplicació.</para>
+            </listitem>
+            <listitem>
+                <para>Creeu i executeu l'aplicació en dispositius virtuals i reals. Utilitzeu la
+                    compilació predeterminada o creeu versions personalitzades per a diferents
+                    versions de la vostra aplicació.© </para>
+            </listitem>
+            <listitem>
+                <para>. Proveu i depureu la lògica i la interfície d'usuari de l'aplicació.</para>
+            </listitem>
+            <listitem>
+                <para>Publiqueu l'aplicació reunint l'APK final (fitxer de paquet) i distribuint-la
+                    a través de canals com Google Play</para>
+            </listitem>
+        </orderedlist>
+    </sect1>
+    <sect1>
+        <title>Utilitzant Android Studio</title>
+        <para>Android Studio proporciona un entorn de desenvolupament unificat per crear aplicacions
+            per a tots els dispositius Android. Android Studio inclou plantilles de codi amb codi de
+            mostra per a funcions comunes de les aplicacions, amplis instruments i marcs de proves
+            iun sistema de compilació flexible</para>
+        <sect2>
+            <title>Començant un projecte Android Studio</title>
+            <para>Un cop hagiu instal·lat correctament el IDE d'Android Studio, feu doble clic a la
+                icona de l'aplicació Android Studio per iniciar-lo. Feu clic a Inicia un projecte
+                nou d'Android Studio a la finestra de benvinguda i assigneu al projecte el mateix
+                nom que vulgueu utilitzar per a l'aplicació. </para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/02-primera-aplicacio-android/002.jpg"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </para>
+            <para>Quan escolliu un domini d'una empresa únic, tingueu en compte que les aplicacions
+                publicades a Google Play han de tenir un nom de paquet únic. Com que els dominis són
+                únics, si prefereixes el nom de la teva aplicació o el nom de domini de la teva
+                empresa hauries de proporcionar un nom de paquet únicament adequat. Si no teniu
+                previst publicar l'aplicació podeu acceptar l'exemple de domini predeterminat.
+                Tingueu en compte que canviar el nom del paquet més tard és un treball extra. </para>
+            
+        </sect2>
+        <sect2>
+            <title>Triar els dispositius de destinació i l'SDK mínim</title>
+            <para>Quan triem els dispositius Androids de destinació, el telèfon i la tauleta es
+                seleccionen de manera predeterminada, tal com es mostra la figura següent. L'elecció
+                que es mostra a la figura per l'SDK mínim (API 15: Android 4.0.3 (IceCreamSandwich))
+                fa que la vostra aplicació sigui compatible amb el 97% dels dispositius que
+                funcionen amb Android actius a Google Play Store</para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/02-primera-aplicacio-android/003.jpg"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para>Diferents dispositius executen diferents versions del sistema Android, com ara
+                Android 4.0.3 o Android 4.4 Cada versió successiva sovint afegeix noves API que no
+                estan disponibles a la versió anterior. Per indicar quin conjunt d'APIs estan
+                disponibles, cada versió especifica un nivell d'AI. Per exemple, Android 1.0 es API
+                nivell 1 i Android 4.0.3 és API nivell 15.</para>
+            <para>L'SDK mínim declara la versió mínima d'Android per a la vostra aplicació. Cada
+                versió successiva d'Android proporciona compatibilitat amb les aplicacions que es
+                van crear mitjançant les API de versions anteriors. Això vol dir que la vostra
+                aplicació sempre hauria de ser compatible amb futures versions d'Android, si feu
+                servir les API d'Android documentades </para>
+        </sect2>
+        <sect2>
+            <title>Triar un Activity Template</title>
+            <para>Una activitat és una cosa única i centrada que l'usuari pot fer. És un component
+                crucial de qualsevol aplicació per a Android. Normalment, una activitat té un
+                disseny associat que defineix com apareixen els elements de la interfície d'usuari a
+                la pantalla.</para>
+            <para>Android Studio pre-omple el vostre projecte amb un codi mínim per a una activitat
+                i un disseny basats en una plantilla. Les plantilles d'activitat disponibles van des
+                d'una plantilla pràcticament en blanc (Afegeix cap activitat) a una activitat que
+                inclou navegació i un menú d'opcions.</para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/02-primera-aplicacio-android/004.jpg"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para>Podeu personalitzar l'activitat després de seleccionar la plantilla. Per exemple,
+                l'opció Activitat buida proporciona una única activitat amb un recurs de disseny
+                únic per a la pantalla. La pantalla Configura activitat apareix després de fer clic
+                a Següent. A la pantalla de Configuració de l'activitat podeu acceptar el nom que
+                s'utilitza habitualment per l'activitat (com ara MainActivity) o podeu canviar-ne el
+                nom.</para>
+            <para><emphasis role="bold">Consell</emphasis>: Aquest curs tracta la classe d'activitat
+                amb més detall en una altra pràctica. També podeu llegir Introducció a les
+                activitats per obtenir una introducció completa.</para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/02-primera-aplicacio-android/005.jpg"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para>La pantantalla <emphasis role="bold">Configure Activity</emphasis> varia en funció
+                de la plantilla que hàgiu triat. En la majoria dels casos, podeu seleccionar les
+                opcions següents, si encara no estan seleccionades:</para>
+            <itemizedlist>
+                <listitem>
+                    <para><emphasis role="bold">Generate Layout File</emphasis>: deixeu aquesta
+                        casella de selecció seleccionada per crear el recurs de disseny
+                        connectat a aquesta <emphasis>Activity</emphasis>, que normalment
+                        s'anomena <emphasis>activity_main</emphasis>. el disseny defineix la
+                        interfície d'usuari de <emphasis>l'Activity</emphasis>.</para>
+                </listitem>
+                <listitem>
+                    <para><emphasis role="bold">Backwards Compatibility (AppCompat)</emphasis>:
+                        Deixeu aquesta casella de selecció seleccionada per incloure la biblioteca
+                            <emphasis>AppCompat</emphasis>. Utilitzeu la biblioteca
+                            <emphasis>AppCompat</emphasis> per assegurar-vos que l'aplicació sigui
+                        compatible amb versions anteriors d'Android, fins i tot si l'aplicació
+                        utilitza funcions que només es troben en versions d'Android més
+                        recents.</para>
+                </listitem>
+            </itemizedlist>
+            <para>Android Studio crea una carpeta per als vostres projectes i crea amb
+                Gradle.</para>
+            <para><emphasis role="bold">Consell</emphasis>: consulteu la pàgina Configuració del
+                desenvolupador de la compilació per obtenir informació detallada.</para>
+        </sect2>
+    </sect1>
+    <sect1>
+        <title>Explorant el projecte</title>
+        <para>Un projecte d'Android Studio conté tot el codi font i tots els recursos d'una
+            aplicació. Els recursos inclouen dissenys, cadenes, colors, dimensions i imatges. La
+            finestra principal d'Android Studio es compon de diverses àrees lògiques o panells, tal
+            com es mostra a la figura següent.</para>
+        <para><inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="img/02-primera-aplicacio-android/006.jpg" align="center" scale="100"/>
+            </imageobject>
+        </inlinemediaobject></para>
+        <para>A la figura anterior:</para>
+        <orderedlist>
+            <listitem>
+                <para>. Barra d'eines: proporciona una àmplia gamma d'accions, inclosa l'execució de
+                    l'aplicació d'android i el llançament d'eines d'Android.</para>
+            </listitem>
+            <listitem>
+                <para>Barra de navegació: navegueu pel projecte i obriu els fitxers per
+                    editar-los.</para>
+            </listitem>
+            <listitem>
+                <para>Tauler de <emphasis role="bold">projectes</emphasis>: mostra fitxers de
+                    projecte en una jerarquia. La jerarquia seleccionada a la figura anterior és
+                        <emphasis role="bold">Android</emphasis>.</para>
+            </listitem>
+            <listitem>
+                <para>Editor: el contingut d'un fitxer seleccionat al projecte. Per exemple,
+                    després de seleccionar un disseny (tal com es mostra a la figura anterior),
+                    el panell de l'editor mostra l'editor de disseny amb eines per editar el
+                    disseny. Després de seleccionar un fitxer de codi Java, el panell de
+                    l'editor mostra el codi Java amb eines per editar el codi.</para>
+            </listitem>
+            <listitem>
+                <para>Pestanyes situades a l'esquerra, a la dreta i a pa part inferior de la
+                    finestra: podeu fer clic a les pestanyes per obrir altres taulers, com ara
+                        <emphasis role="bold">Logcat</emphasis> per obrir el tauler <emphasis
+                        role="bold">Logcat</emphasis> amb missatges de registre o TODO per gestionar
+                    les tasques.</para>
+            </listitem>               
+        </orderedlist>
+        <para>La barra d'estat a la part inferior de la finestra d'Android Studio mostra l'estat del
+            projecte i del propi Android Studio, així com qualsevol advertiment o missatge. Podeu
+            veure el progrés de la construcció a la barra d'estat.</para>
+        <para><emphasis role="bold">Consell</emphasis>: Podeu organitzar la finestra principal per
+            donar-vos més espai a la pantalla amagant o movent panells. També podeu utilitzar
+            dreceres de teclat per accedir a la majoria de funcions. Consulteu les dreceres de
+            teclat per obtenir una llista completa. </para>
+        <sect2>
+            <title>Utilitzant el panell de projecte</title>
+            <para>Podeu veure l'organització del projecte de diverses maneres al tauler de
+                projectes. Si encara no està seleccionat, feu clic a la pestanya Projecte. (La
+                pestanya Projecte es troba a la columna de la pestanya vertical a la part
+                esquerra de la finestra d'Android Studio.)</para>
+            <para>Apareix el panell del projecte. Per veure el projecte a la jerarquia estàndard
+                del projecte d'Android, seleccioneu Android a la fletxa avall que hi ha a la
+                part superior del panell del projecte.</para>
+            <para><inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="img/02-primera-aplicacio-android/007.jpg" align="center" scale="100"/>
+                </imageobject>
+            </inlinemediaobject></para>
+            <para><emphasis role="bold">Nota</emphasis>: aquest capìtol i altres capítols fan
+                referència al tauler Projecte, quan es defineix a Android, com a tauler <emphasis
+                    role="bold">Projecte > Android</emphasis>.</para>
+            <sect3>
+                <title>Fitxers Gradle</title>
+                <para>Quan creeu un projecte d'aplicació per primera vegada, apareix el tauler
+                    Projecte > Android amb la carpeta Gradle Scripts espandida, tal com es mostra a
+                    continuació. Si la carpeta Gradle Scripts no està expandida, feu clic al
+                    triangle per espandir-la. Aquesta carpeta conté tots els fitxers que necessita
+                    el sistema de compilació.</para>
+                <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/02-primera-aplicacio-android/008.jpg" scale="100" align="center"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+                <para>El fitxer <emphasis>build.gradle (Module:app)</emphasis> especifica
+                    biblioteques addicionals i la configuració de compilació del mòdul. La plantilla
+                        <emphasis>d'Activity</emphasis> que seleccioneu crea aquest fitxer. El
+                    fitxer inclou l'atribut <emphasis>minSdkVersion</emphasis> que declara la versió
+                    mínima de l'aplicació i l'atribut <emphasis>targetSdkVersion</emphasis> que
+                    declara la versió més alta (la més recent) per a la qual s'ha optat per
+                    l'aplicació.</para>
+                <para>Aquest fitxer també inclou una llista de <emphasis>dependències</emphasis>,
+                    que són biblioteques que requereixen el codi, com ara la biblioteca
+                    <emphasis>AppCompat</emphasis> per admetre una àmplia gamma de versions
+                    d'Android.</para>
+            </sect3>
+            <sect3>
+                <title>Codi App</title>
+                <para>Per veure i editar el codi Java, amplieu la carpeta de
+                        <emphasis>app</emphasis>, la carpeta
+                        <emphasis>com.exemple.android.helloworld</emphasis>. Feu Doble clic al
+                    fitxer java <emphasis>MainActivity</emphasis> per obrir-lo a l'editor de
+                    codi.</para>
+                <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/02-primera-aplicacio-android/009.jpg" scale="100" align="center"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+                <para>La carpeta Java inclou fitxers de classe Java. Cada activitat, servei o altre
+                    component (com ara un fragment) es defineix com una classe Java, normalment en
+                    el seu propi fitxer. Les proves i altres fitxers de classe Java També es troben
+                    aquí.</para>
+                <para>La carpeta Java conte tres subcarpetes:</para>
+                <itemizedlist>
+                    <listitem>
+                        <para><emphasis>com.example.hello.helloworld</emphasis>: (o el nom de domini
+                            que heu especificat): tots els fitxers d'un paquet es troben en una
+                            carpeta que porta el nom del paquet. Per a la vostra aplicació Hello
+                            World, hi ha un paquet i només conté
+                                <emphasis>MainActivity.java</emphasis>. La primera Activity
+                            (pantalla) que veu l'usuari, que també inicialitza tota l'aplicació,
+                            s'anomena habitualment MainActivity. (L'extensió de fitxer s'omet al
+                                tauler<emphasis role="bold"> Projecte > Android</emphasis>).</para>
+                    </listitem>
+                    <listitem>
+                        <para><code>com.example.hello.helloworld(androidTest)</code>: Aquesta
+                            carpeta serveix per a les proves instrumentades i comença amb una fitxer
+                            de prova d'esquelet.</para>
+                    </listitem>
+                    <listitem>
+                        <para><emphasis>com.example.hello.helloworld(test)</emphasis>: Aquesta
+                            carpeta és per a les proves unitàries i comença amb un fitxer de prova
+                            unitària esquelet creat automàticament.</para>
+                    </listitem>
+                </itemizedlist>
+            </sect3>
+            <sect3>
+                <title>Fitxers Layout (vistes)</title>
+                <para>Per veure i editar un fitxer de disseny, amplieu la carpeta res i la carpeta
+                    de disseny per veure el fitxer de layout. A la figura següent, el fitxer de
+                    disseny s'anomena <emphasis>activity_main.xml</emphasis>.</para>
+                <para>Feu doble clic al fitxer per obrir-lo a l'editor de disseny. Els fitxers de
+                    disseny s'escriuen en XML.</para>
+                <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/02-primera-aplicacio-android/010.jpg" scale="100" align="center"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            </sect3>
+            <sect3>
+                <title>Fitxer Resource (recursos)</title>
+                <para>La carpeta res conté recursos, com ara dissenys, cadenes i imatges.
+                    Normalment, una activitat s'associa a un diseny de vistes d'interfície d'usuari
+                    que es defineixen com a fitxer XML. Aquest fitxer XML sol rebre el nom de la
+                    seva activitat. La carpeta res inclou aquestes subcarpetes: </para>
+                <itemizedlist>
+                    <listitem>
+                        <para><emphasis>drawable</emphasis>: Emmagatzemeu totes les imatges de la
+                            vostra aplicació en aquesta carpeta.</para>
+                    </listitem>
+                    <listitem>
+                        <para><emphasis>layout</emphasis>: Cada Activity té com a mínim un fitxer de
+                            disseny XML que descriu la IU. Per a Hello World, aquesta carpeta conté
+                            activity_main-xml.</para>
+                    </listitem>
+                    <listitem>
+                        <para><emphasis>mipmap</emphasis>: Les icones del launcher s'emmagatzemen en
+                            aquesta carpeta. Hi ha una subcarpeta per a cada densitat de pantalla
+                            compatible. Android utilitza la densitat de pantalla (el nombre de
+                            píxels per polzada) per determinar la resolució d'imatge necessària.
+                            Android agrupa totes les densitats de pantalla reals en densitats
+                            generalitzades, com ara mitjana (mdpi), alta (hdpi) o
+                            extra-extra-extra-alta (xxxhdpi). La carpeta ic_launcher.png conté les
+                            icones del llançador predeterminat per a totes les densitats admeses per
+                            la vostra aplicació.</para>
+                    </listitem>
+                    <listitem>
+                        <para><emphasis>values</emphasis>: En lloc de codificar valors com ara
+                            cadenes, dimensions i colors als fitxers XML i Java, és recomanable
+                            definir-los als fitxers de valors respectius. Aquesta pràctica fa que
+                            sigui més fàcil canviar els valors i mantenir-los coherents a tota la
+                            vostra aplicació.</para>
+                    </listitem>
+                </itemizedlist>
+                <para>La subcarpeta values conté aquestes subcarpetes:</para>
+                <itemizedlist>
+                    <listitem>
+                        <para><emphasis>colors.xml</emphasis>: mostra els colors predeterminats per
+                            al tema escollit. Podeu afegir els vostres propis colors o canviar-los
+                            segons els requisits de l'aplicació.</para>
+                    </listitem>
+                    <listitem>
+                        <para><emphasis>dimens.xml</emphasis>: emmagatzemeu les mides de vistes i
+                            objectes per a diferents resolucions. </para>
+                    </listitem>
+                    <listitem>
+                        <para><emphasis>strings:xml</emphasis>: creeu recursos per a totes les
+                            vostres cadenes. En fer-ho, és fàcil traduir les cadenes a altres
+                            idiomes.</para>
+                    </listitem>
+                    <listitem>
+                        <para><emphasis>styles.xml</emphasis>: aquí trobareu tots els estils de la
+                            vostra aplicació i tema. Els estils ajuden a donar a la vostra aplicació
+                            un aspecte coherent de otts els elements de la interfície
+                            d'usuari.</para>
+                    </listitem>
+                </itemizedlist>
+            </sect3>
+        </sect2>
+        <sect2>
+            <title>Utilitzant el panell d'edició</title>
+            <para>Si seleccioneu un fitxer, apareixerà el tauler de l'editor. Apareix una pestanya
+                per al fitxer perquè pugueu obrir diversos fitxers i canviar-los. Per exemple, si
+                feu doble clic al fitxer de disseny <emphasis role="bold"
+                    >activity_main.xml</emphasis> al tauler <emphasis role="bold">Projecte >
+                    Android</emphasis>, l'editor de disseny apareix com es mostra a
+                continuació.</para>
+            <para><inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="img/02-primera-aplicacio-android/011.jpg" scale="100" align="center"/>
+                </imageobject>
+            </inlinemediaobject>
+            </para>
+            <para>Si feu doble clic al fitxer <emphasis role="bold">MainActivity</emphasis> al
+                panell Projecte > Android, l'editor canvia a l'editor de codi com es mostra a
+                continuació, amb una pestanya per<emphasis> MainActivity.java.</emphasis></para>
+            <para><inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="img/02-primera-aplicacio-android/012.jpg" scale="100" align="center"/>
+                </imageobject>
+            </inlinemediaobject>
+            </para>
+            <para>A la part superior del fitxer <emphasis role="bold"
+                >MainActivity.java</emphasis> hi ha una declaració de paquet que defineix el
+                paquet de l'aplicació. Aquesta declaració de paquet és seguida d'un bloc
+                d'importació condensat amb …, tal com es mostra a la figura anterior. Feu clic
+                als punts per expandir el bloc per visualitzar-lo. Les declaracions d'importació
+                importen les biblioteques necessàries per a l'aplicació. Per exemple, la
+                declaració següent importa la biblioteca
+                <emphasis>AppCompatActivity</emphasis>.</para>
+            <programlisting><code>import android.support.v7.app.AppCompatActivity;</code></programlisting>
+            <para>Cada activitat d'una aplicació s'implementaq com a classe Java. La declaració
+                de classe següent amplia la classe AppCompatActivity per implementar funcions de
+                manera compatible amb versions anteriors d'Android:</para>
+            <para>
+                <programlisting><code>public class MainActivity extends AppCompatActivity {
+    // ... Rest of the code for the class.
+}</code></programlisting>
+            </para>
+        </sect2>
+    </sect1>
+    <sect1>
+        <title>Entenent el manifest d'Android</title>
+        <para>Abans que el sistema Android pugui iniciar un component d'aplicació com ara una
+            activitat, el sistema ha de saber que l'activitat existeix. Ho fa llegint el fitxer
+            AndroidManifest.xml de l'aplicació, que descriu tots els components de la vostra
+            aplicació per a Android. Cada activitat ha de figurar en aquest fitxer XML,
+            juntamnet amb tots els components de l'aplicació.</para>
+        <para>Per veire i editar el fitxer AndroidManifest.xml, amplieu la carpeta Manifests al
+            panell Projecte > Android i feu doble clic a AndroidManifest.xml, el seu contingut
+            apareix al tauler d'edició:</para>
+        <para>
+            <programlisting><code>&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.android.helloworld">
+
+    &lt;application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        &lt;activity android:name=".MainActivity">
+            &lt;intent-filter>
+               &lt;action android:name="android.intent.action.MAIN" />
+
+               &lt;category android:name="android.intent.category.LAUNCHER" />
+            &lt;/intent-filter>
+        &lt;/activity>
+    &lt;/application>
+
+&lt;/manifest></code></programlisting>
+        </para>
+        <sect2>
+            <title>namespace i etiqueta d'aplicació d'Android</title>
+            <para>El Manifest d'Android està codificat en XML i sempre utilitza el namespace
+                d'Android:</para>
+            <para>
+                <programlisting><code>xmlns:android="http://schemas.android.com/apk/res/android"
+   package="com.example.android.helloworld"></code></programlisting>
+            </para>
+            
+            <para>L'expressió del <emphasis>package</emphasis> mostra el nom únic del paquet de la
+                nova aplicació. No canvieu l'expressió del paquet després de publicar
+                l'aplicació.</para>
+            <para>L'etiqueta <code>&lt;application></code>, amb l'etiqueta de tancament
+                    <code>&lt;/application></code>, defineix la configuració del manifest per a tota
+                l'aplicació.</para>
+        </sect2>
+        <sect2>
+            <title>Backup automàtic</title>
+            <para>L'atribut android:allowBackup permet la còpia de seguretat automàtica de dades de
+                l'aplicació:</para>
+            <para>
+                <programlisting><code>android:allowBackup="true"</code></programlisting>
+            </para>
+            <para>La configuració de l'atribut <emphasis>android:allowbackup</emphasis> a true
+                permet fer una còpia de seguretat de l'aplicació automàticament i restaurar-la
+                segons sigui necessari. els usuaris inverteixen temps i esforç en configurar
+                aplicacións. Si canvieu a un dispositiu nou, podeu cancel·lar tota aquesta
+                configuració acurada. El sistema realitza aquesta còpia de seguretat automàtica per
+                a gairabé totes les dades de l'aplicació per defecte i ho fa sense que el
+                desenvolupador hagi d'escriure cap codi d'aplicació addicional.</para>
+            <para>Per a les aplicacions que tinguin la versió SDK objectiu Android 6.0 (nivell API
+                23) i versions posteriors, creen automàticament còpies de seguretat de dades de
+                l'aplicació al núvol perquè l'atribut android:allowBackup és per defecte true si
+                s'omet. Per a les aplicacions &lt; API nivell 22, heu d'afegir explícitament
+                l'atribut android:allowBackup i establir-lo a true.</para>
+            <para><emphasis role="bold">Consell</emphasis>: per obtenir més informació sobre la
+                còpia de seguretat automàtica per a aplicacions, consulteu Configuració de la còpia
+                de seguretat automàtica per a aplicacions.</para>
+        </sect2>
+        <sect2>
+            <title>La icona de l'aplicació</title>
+            <para>L'atribut <emphasis>android:icon</emphasis> defineix la icona de
+                l'aplicació</para>
+            <para>
+                <programlisting><code>android:allowBackup="true"
+android:icon="@mipmap/ic_launcher"</code></programlisting>
+            </para>
+            <para>L'atribut acroid:icon assigna a l'aplicació una icona a la carpeta mipmap (dins de
+                la carpeta res al panell <emphasis role="bold">Projecte > Android</emphasis>. La
+                icona apareix a la pantalla d'inici o a la pantalla Cerca d'aplicacions per iniciar
+                l'aplicació. La icona també s'utilitza com a icona predeterminada per a la
+                composició d'aplicacions.</para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/02-primera-aplicacio-android/015.jpg"  scale="100" align="center"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+        </sect2>
+        <sect2>
+            <title>Etiqueta de la App i recursos d'string</title>
+            <para>L'atribut <code>android:label</code> mostra la cadena <code>"Hello World"</code>
+                ressaltada. Si feu clic a la cadena, canvia per mostrar el recurs de cadena
+                    <code>@string/app_name</code>.</para>
+            <para>
+                <programlisting><code>android:label="@string/app_name"</code></programlisting>
+            </para>
+            <para><emphasis role="bold">Consell</emphasis>: per veure el menú contextual, feu clic
+                amb el botó ctrl o feu clic amb el botó dret sobre nom_aplicació al tauler de
+                l'editor. Seleccioneu <emphasis role="bold">Go to > Declaration</emphasis> per veure
+                on es declara le recurs de cadena: al fitxer strings.xml. Quan seleccioneu <emphasis
+                    role="bold">Go to > Declaration</emphasis> o obriu el fitxer fent doble clic a
+                strings.xml a la carpeta de valors del tauler <emphasis role="bold">Projecte >
+                    Android</emphasis>, el contingutdel fitxer apareixerà al tauler de
+                l'editor.</para>
+            <para>Després d'obrir el fitxer strings.xml, podeu veure que el nom de la cadena
+                app_name està definit a Hello World. Podeu canviar el nom de l'aplicació canviant la
+                cadena Hello World per una altra cosa. Els recursos de cadenes es descriuen en una
+                llicó independent..</para>
+        </sect2>
+        <sect2>
+            <title>tema de l'aplicació</title>
+            <para>L'atribut <code>android: theme</code> defineix el tema de l'aplicació, que
+                defineix l'aparença d'elements de la inerfície d'usuari, com ara el text:</para>
+            <para>
+                <programlisting><code>android:theme="@style/AppTheme"></code></programlisting>
+            </para>
+            <para>L'atribut <emphasis>theme</emphasis> s'estableix en el tema stàndard
+                    <emphasis>AppTheme</emphasis>. Els temes es escriuen en una lliço
+                independent.</para>
+        </sect2>
+        <sect2>
+            <title>Declarant la versió d'Android</title>
+            <para>Diferents dispositius poden executar diferents versions del sistema Android, com
+                ara Android 4.0 o Android 4.4 Cada versió successiva pot afegir noves API que no
+                estan disponibles a la versió anterior. Per indicar quin conjunt d'APIs estan
+                disponibles, cada versió especifica un nivell d'API. Per exemple. Android 1.0 és API
+                nivell 1 i Android 4.4 és API nivell 19. versió mínima compatible com
+                aquesta:</para>
+            <para>
+                <programlisting><code>&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.android.helloworld">
+    &lt;uses-sdk android:minSdkVersion="14" android:targetSdkVersion="19" />
+    // ... Rest of manifest information
+&lt;/manifest></code></programlisting>
+            </para>
+            <para>L'atribut <code>minSdkVersion</code> declara la versió mínima de l'aplicació i
+                l'atribut targetSdkVersion declara la versió més alta (la més recent) optimitzada a
+                l'aplicació. Cada versió successiva d'Android proporciona compatibilitat amb les
+                aplicacions que es van crear amb les API de versions anteriors, de manera que
+                l'aplicació sempre ha de ser compatible amb futures versions d'Android mentre
+                s'utilitzen les API d'Android documentades.</para>
+            <para>L'atribut <code>targetSdkVersion</code> no impedeix instal·lar una aplicació en
+                versions d'Android que siguin superiors (més recents) que el valor especificat. Tot
+                i això, l'atribut de destinació és important, ja que indica al sistema si
+                l'aplicació ha d'heretar canvis de comportament en versions més recents.</para>
+            <para>Si no actualitzeu la <code>targetSdkVersion</code> a la versió més recent, el
+                sistema assumeix que l'aplicació requereix comportaments compatibles amb versions
+                anteriors quan s'executa en la versió més recent. Per exemple, entre els canvis de
+                comportament d'Android 4.4, les alarmes creades amb les API
+                    <code>AlarmManager</code> ara son inexactes de manera predeterminada, de manera
+                que el sistema pot generar alarmes d'aplicacions i preservar l'energia del sistema.
+                Si el vostre nivell d'API objectiu és inferior a <code>"19"</code>, el sistema
+                conserva el comportament de l'API anterior per a la vostra aplicació.</para>
+            <para></para>
+        </sect2>
+        
+    </sect1>
+    <sect1>
+        <title>Comprensió del procés de construcció</title>
+        <para>El paquet d'aplicacions d'ÇAndroid (APK) és el format de fitxer de paquet per
+            distribuir i instal·lar aplicacions mòbils Android. El procés de construcció inclou
+            eines i processos que converteixen automàticament cada projecte en un APK.</para>
+        <para>Android Studio utilitza Gradle com a fonament del sistema ce construcció, amb més
+            funcions específiques d'Android proporcionades pel complement d'Android per a Gradle.
+            Aquest sistema de compilació funciona com una eina integrada des del menú d'Android
+            Studio.</para>
+        <sect2>
+            <title>Entenent els fitxers build.gradle</title>
+            <para>Quan creeu un projecte, Android Studio genera automàticament els fitxers de
+                compilació necessaris a la carpeta Gradle Scripts del tauler Projecte > Android. Els
+                fitxers de compilació d'Android Studio s'anomenen build.gradle com es mostra a
+                continuació.</para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/02-primera-aplicacio-android/016.jpg"  scale="100" align="center"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+        </sect2>
+        <sect2>
+            <title>build.gradle (Project: apptitle</title>
+            <para>Aquest fitxer és el fitxer de compilació de nivell superior per a tot el projecte,
+                situat a la carpeta del projecte arrel, que defineix les configuracions de
+                compilació que s'apliquen a tots els mòduls del projecte. Aquest fitxer, generat per
+                Android Studio, no s'hauria d'editar per incloure dependències d'aplicacions.</para>
+            <para>Si una dependència és una altra cosa que una biblioteca local o un arbre de
+                fitxers, Gradle busca els fitxers als repositoris en línia que s'especifiquin al
+                bloc de repositoris d'aquest fitxer. Per defecte, els nous projectes d'Android
+                Studio declaren JCenter i Google (que inclou el dipòsit de Google Maven) com a
+                ubicacions del dipòsit:</para>
+            <para>
+                <programlisting><code>allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}</code></programlisting>
+            </para>
+        </sect2>
+        <sect2>
+            <title>build.gradle (Module: app)</title>
+            <para>Android Studio crea fitxers <code>build.gradle (Module: app)</code> separats per a
+                cada mòdul. Podeu editar la configuració de compilació per proporcionar opcions
+                d'embalatge personalitzades per a cada mòdul, com ara tipus de compilació
+                addicionals i sabors de productes, i per anul·lar la configuració al fitxer de
+                manifest o de nivell superior build.gradle. Aquest fitxer sol ser el fitxer que
+                s'edita quan es canvien les configuracions de nivell d'aplicació, com ara declarar
+                dependències a la secció de <code>dependències</code>. A continuació es mostra el
+                contingut del fitxer <code>build.gradle (Module: app)</code> d'un projecte.</para>
+            <para>
+                <programlisting><code>apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.example.android.helloworld"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner 
+                         "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 
+                                                     'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 
+                    'com.android.support.test.espresso:espresso-core:3.0.1'
+}</code></programlisting>
+            </para>
+            <para>Els fitxers build.gradle utilitzen la sintaxi Gradle. Gradle és un llenguatge
+                específic de domini (DLS) per descriure i manipular la lògica de construcció
+                mitjançant Groovy, que és un llenguatge dinàmic per a la màquina virtual de Java
+                (JVM). No cal que apreneu Groovy per fer canvis, perquè el connector d'Android per
+                Gradle introdueix la majoria dels elements DSL que necessieu.</para>
+            <para><emphasis role="bold">Consell</emphasis>: per obtenir més informació sobre el
+                connector DSL d'Android, llegiu la documentació de referència DSL.</para>
+        </sect2>
+        <sect2>
+            <title>Complements i blocs d'Android (plugin and blocks)</title>
+            <para>Al fitxer <code>build.gradle (Module: app)</code> anterior, la primera sentència
+                alica les tasques de construcció de conectors Gradle específics d'Andrid:</para>
+            <para>
+                <programlisting><code>apply plugin: 'com.android.application'
+
+android {
+   compileSdkVersion 26
+   // ... Rest of android block.
+}</code></programlisting>
+            </para>
+            <para>El bloc <code>Android {}</code> especifica la versió de l'SDK de destinació per
+                compilar el codi de l'aplicació (<code>compileSdkVerson 26</code>) i diversos blocs
+                d'informació.</para>
+        </sect2>
+        <sect2>
+            <title>El bloc defaultConfig</title>
+            <para>La configuració i les entrades bàsiques de l'aplicació s'especifiquen al bloc
+                    <code>defaultConfig {}</code> i al bloc <code>Android { }</code>:</para>
+            <para>
+                <programlisting><code>defaultConfig {
+    applicationId "com.example.android.helloworld"
+    minSdkVersion 15
+    targetSdkVersion 26
+    versionCode 1
+    versionName "1.0"
+    testInstrumentationRunner 
+                "android.support.test.runner.AndroidJUnitRunner"
+}</code></programlisting>
+            </para>
+            <para>La configuració <code>minSdkVersion</code> i <code>targetSdkVersion</code>
+                substitueix qualsevol configuració d'AndroidManifest.xml per a la versió mínima de
+                l'SDK de destinació. Consulteu "declaració de la versió d'Android" anteriorment en
+                aquest capítol per obtenir informació general sobre aquests paràmetres.</para>
+            <para>La declaració de <code>testInstrumentationRunner</code> afegeix el suport
+                d'instrumentació per provar la interfície d'usuari mitjançant Espresso i
+                UIAutomator. aquestes eines es descriuen en una lliçó independent.</para>
+        </sect2>
+        <sect2>
+            <title>Tipus de compilació</title>
+            <para>El tipus de compilació de l'aplicació s'especifiquen en un bloc buildTypes {}. que
+                controla com es crea i s'empaqueta l'aplicació.</para>
+            <para>
+                <programlisting><code>buildTypes {
+    release {
+        minifyEnabled false
+        proguardFiles getDefaultProguardFile('proguard-android.txt'), 
+                                                       'proguard-rules.pro'
+    }
+}</code></programlisting>
+            </para>
+            <para>El tipus de compilació especificat és la versió per a la <code>versió de
+                    l'aplicació</code>. Un altre tipus de compilació comú és la depuració. La
+                configuració dels tipus de compilació es descriu en una lliçó independent.</para>
+        </sect2>
+        <sect2>
+            <title>Dependències</title>
+            <para>Les dependències de l'aplicació es defineixen al bloc <code>dependències
+                {}</code>, que és la part del fitxer <code>buid.gradle</code> que és més probable
+                que canviï a mesura que comenceu a desenvolupar un codi que depèn d'altres
+                bibioteques. El bloc forma part de l'API estàndard de Gradle i pertany for a del
+                    <code>bloc {}</code> d'Android.</para>
+            <para>
+                <programlisting><code>dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 
+                    'com.android.support.test.espresso:espresso-core:3.0.1'
+}</code></programlisting>
+            </para>
+            <para>Al fragment superior el fitxer d'implementació de sentències <code>implementation
+                    fileTree(dir: 'libs', include: ['*.jar'])</code> afegeix una dependència de tots
+                els fitxers ".jar" de la carpeta <code>libs</code></para>
+        </sect2>
+        <sect2>
+            <title>Sincronització el vostre projecte</title>
+            <para>quan feu canvis als fitxers de configuració de la compilació en un projecte,
+                Android Studio requereix que sincronitzeu els fitxers del projecte. Durant la
+                sincronització, Android Studio importa els canvis de configuració de la compilació i
+                executa comprovacions per assegurar-se que la configuració no crearà errors de
+                compilació.</para>
+            <para>Per sincronitzar els fitxers del projecte, feu clic a Sincronitza ara a la barra
+                de notificacions que apareix en fer un canvi (tal com es mostra a la figura següent)
+                o feu clic al botó <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/02-primera-aplicacio-android/017.jpg"  scale="100" align="center"/>
+                    </imageobject>
+                </inlinemediaobject> Sincronitza projecte amb fitxers Gradle Sincronitza projecte
+                amb fitxers Gradle a la barra de menú.</para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/02-primera-aplicacio-android/018.jpg"  scale="100" align="center"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para>Si Android Studio detecta errors a la configuració, per exemple, si el codi font
+                utilitza funcions de l'API que només estan disponibles en un nivell d'API superior
+                al <code>compileSdkVersion</code>, apareixerà a la finestra <emphasis role="bold"
+                    >Messages</emphasis> per descriure el problema.</para>
+        </sect2>
+    </sect1>
+    <sect1>
+        <title>Executant l'aplicació en un emulador o dispositiu</title>
+        <para>Amb els emuladors de dispositius virtuals, podeu provar una aplicació en diferents
+            dispositius, com ara tauletes o telèfons intel·ligents (amb diferents nivells d'API per
+            a diferents versions d'Android), per assegurar-vos que tingui un bon aspecte i funcioni
+            per a la majoria d'usuaris. No heu e dependre de tenir un dispositiu físic disponible
+            per al desenvolupament d'aplicacions.</para>
+        <para>El gestor de dispositius virtuals d'Android (AVD) crea un dispositiu virtual o un
+            emulador que simula la configuració d'un tipus concret de dispositiu alimentat per
+            Android. Utilitzeu l'ÇAVD Manager per definir les característiques de maquinari d'un
+            dispositiu i el seu nivell d'API i desar-lo com a configuració de dispositiu virtual.
+            Quan inicieu l'emulador d'Android, es llegeix una configuració especificada i es crea un
+            dispositiu emulat a l'ordinador que es comporta exactament com una versió física
+            d'aquest dispositiu.</para>
+        <sect2>
+            <title>Creant un dispositiu virtual</title>
+            <para>Per executar un emulador a l'ordinador, utilitzeu l'AVD Manager per crear una
+                configuració que descrigui el dispositiu virtual. Seleccioneu <emphasis role="bold"
+                    >Eines > Android >  Gestor AVD</emphasis> o feu clic a la icona del Gestor AVD <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/02-primera-aplicacio-android/019.jpg"/>
+                    </imageobject>
+                </inlinemediaobject> del gestor AVD a la barra d'eines</para>
+            <para>Apareix la pantalla els vostres dispositius virtuals que mostra tots els
+                dispositius virtuals creats anteriorment. Feu clic al botó + Crea un dispositiu
+                virtual per crear un dispositiu virtual nou.</para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/02-primera-aplicacio-android/020.jpg"  scale="100" align="center"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para>Podeu seleccionar un dispositiu d'una llista de dispositius de maquinari
+                predefinits. Per a cada dispositiu, una taula proporciona una columna per a la mida
+                de la pantalla diagonal (mida), la resolució de la pantalla en píxels (resolució) i
+                la densitat de píxels (densitat). Per exemple, la densitat de píxels del dispositiu
+                Nexus 5 és xxhdpi, el que significa que l'aplicació utilitza les icones de la
+                carpeta xxhdpi de la carpeta mipmat. De la mateixa manera, l'aplicació utilitza
+                dissenys i dibuixos de carpetes definides per a aquesta densitat.</para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/02-primera-aplicacio-android/021.jpg"  scale="100" align="center"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para>Després de fer clic a <emphasis role="bold">Next</emphasis>, apareix la pantalla
+                    <emphasis role="bold">System Image</emphasis> per triar la versió del sistema
+                Android per al dispositiu. La pestanya <emphasis role="bold">Recommended</emphasis>
+                mostra els sistemes recomanats per al dispositiu. Hi ha més versions disponibles a
+                les pestanyes <emphasis role="bold">images</emphasis>
+                <emphasis role="bold">x86</emphasis> i <emphasis role="bold">Other
+                images</emphasis>. Si un enllaç de <emphasis role="bold">Download</emphasis> és
+                visible al costat d'una versió de la imatge del sistema, encara noa està instal·lat.
+                Feu clic a l'enllaç per iniciar la baixada i, a continuació, feu clic a
+                Finalitza</para>
+        </sect2>
+        <sect2>
+            <title>Executant l'aplicació al dispositiu virtual</title>
+            <para>Per executar l'aplicació al dispositiu virtual que heu creat a la secció anterior,
+                seguiu aquests passos:</para>
+            <orderedlist>
+                <listitem>
+                    <para>A Android Studio, seleccioneu <emphasis role="bold">Run > run
+                            app</emphasis> o cliqueu sobre la icona <emphasis role="bold">Run
+                            icon</emphasis> de la barra d'eines.</para>
+                </listitem>
+                <listitem>
+                    <para>A la finestra Selecciona un objectiu de desplegament, a Emuladors
+                        disponibles, seleccioneu el dispositiu virtual que heu creat i feu clic a
+                            <emphasis role="bold">ok</emphasis>.</para>
+                </listitem>
+            </orderedlist>
+            <para>L'emulador s'inicia i arrenca igual que un dispositiu físic. En funció de la
+                velocitat de l'ordinador, el procés d'inici pot trigar una estona. L'aplicació es
+                crea I, un cop l'emulador està a punt, Android Studio penja l'aplicació a l'emulador
+                i l'executa.</para>
+            <para>Hauríeu de veure l'aplicació creada a partir de la plantilla Activity Empty
+                ("Hello World") Tal com es mostra ala figura següent, que també mostra el panell
+                d'execució d'Android Studio que mostra les accions realitzades per executar
+                l'aplicació a l'emulador.</para>
+            <para>Consell: en fer proves en un dispositiu virtual, és una bona pràctica iniciar-lo
+                una vegada al principi de la sessió. No el tanqueu fins que no hàgiu acabat de
+                provar l'aplicació, de manera que l'aplicació no hagi de tornar a passar el procés
+                d'inici del dispositiu. Per tancar el dispositiu virtual seleccioneu <emphasis
+                    role="bold">Quit</emphasis> del menú o premeu <emphasis role="bold"
+                    >Control-Q</emphasis> en Windows o <emphasis role="bold">Comand-Q</emphasis> in
+                macOS.</para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/02-primera-aplicacio-android/023.jpg"  scale="100" align="center"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para>La figura anterior mostra l'emulador i el registre d'execució:</para>
+            <orderedlist>
+                <listitem>
+                    <para>L'emulador executa l'aplicació.</para>
+                </listitem>
+                <listitem>
+                    <para>El tauler Executa, que mostra les accions realitzades per instal·lar i
+                        executar l'aplicació</para>
+                </listitem>
+                <listitem>
+                    <para>La pestanya Executa, que feu clic per obrir o tancar el tauler
+                        executa.</para>
+                </listitem>
+            </orderedlist>
+        </sect2>
+        <sect2>
+            <title>Executant l'aplicació al dispositiu físic</title>
+            <para>Proveu sempre les vostres aplicacions en un dispositiu físic. Tot i que els
+                emuladors són útils, no poden mostrar tots els estats possibles del dispositiu, com
+                ara què passa si es produeix una trucada entrant mentre s'aplica l'aplicació. Per
+                executar l'aplicació en un dispositiu físic, necessiteu el següent:</para>
+            <itemizedlist>
+                <listitem>
+                    <para>Un dispositiu amb Android, com ara un telèfon o una tauleta.</para>
+                </listitem>
+                <listitem>
+                    <para>Un cable de dades per connectar el dispositiu amb Android a l'ordinador
+                        mitjan´çant el port USB.</para>
+                </listitem>
+                <listitem>
+                    <para>Si utilitzeu un sistema Linux o Windows, és possible que hàgiu de fer
+                        passos addicionals per executar-vos en un dispositiu de maquinari, Consulteu
+                        la documentació Ús de dispositius de maquinari. És possible que també hàgiu
+                        d'instal·lar el controlador USB adequat per al vostre dispositiu. Consulteu
+                        Controladors USB OEM.</para>
+                </listitem>
+            </itemizedlist>            
+            <para>Per permetre que Android Studio es comuniqui amb el dispositiu que funciona amb
+                Android, heu d'activar la depuració USB al dispositiu. Activeu la depuració USB al
+                dispositiu. Activeu la depuració USB a la configuració d'opcions del desenvolupador
+                del dispositiu. (Tingueu en compte que habilitar la depuració USB no és el mateix
+                que arrelar el dispositiu.).</para>
+            <para>A Android 4.2 i versions posteriors, la pantalla d'opcions del desenvolupador està
+                oculta per defecte. Per mostrar les opcions del desenvolupador i habilitar la
+                depuració USB:</para>
+            <orderedlist>
+                <listitem>
+                    <para>Al dispositiu, obriu <emphasis role="bold">Settings > About
+                            phone</emphasis> i toqueu número de compilació set vegades.</para>
+                </listitem>
+                <listitem>
+                    <para>Torneu a la pantalla anterior <emphasis role="bold">(Settings). Developer
+                            options </emphasis>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>Seleccioneu <emphasis role="bold">USB Debugging</emphasis></para>
+                </listitem>
+                <listitem>
+                    <para>Conecteu el dispositiu i compileu l'aplicació des de Android
+                        Studio.</para>
+                </listitem>
+            </orderedlist>
+        </sect2>
+    </sect1>
+    <sect1>
+        <title>Utilitzant logs</title>
+        <para>El registre és una potent eina de depuració que podeu utilitzar per examinar valors,
+            camins d'execució i excepcions. Després d'afegir declaracions de registre a una
+            aplicació, els missatges de registre apareixen juntament amb els missatges de registre
+            generals al tauler Logcat.</para>
+        <sect2>
+            <title>Veient els missatges de log</title>
+            <para>Per veure el tauler Logcat, feu clic a la pestanya Logcat a la part inferior de la
+                finestra d'Android Studio, tal com es mostra a la figura següent.</para>
+            <para><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="img/02-primera-aplicacio-android/024.jpg" scale="100" align="center"/>
+                    </imageobject>
+                </inlinemediaobject></para>
+            <para>En la figura anterior:</para>
+            <orderedlist>
+                <listitem>
+                    <para>La pestanya <emphasis role="bold">logcat</emphasis> per obrir i tancar el
+                        panell <emphasis role="bold">Logcat</emphasis> que mostra informació sobre
+                        la vostra aplicació mentre s'extà executant. Si afegiu declaracions de
+                        registre a la vostra aplicació, els missatges de registre apareixeran
+                        aquí.</para>
+                </listitem>
+                <listitem>
+                    <para>El menú Nivell de registre es defineix a Verbose (el valor per defecte),
+                        que mostra tots els missatges de registre. Altres paràmetres inclouen
+                        Depuració, Error, Informació i advertiment.</para>
+                </listitem>
+            </orderedlist>
+        </sect2>
+        <sect2>
+            <title>Afegint logs de registre a la vostra aplicació</title>
+            <para>Les declaracions de registre afegeixen els missatges que especifiqueu al registre
+                en determinats punts del codi permet al desenvolupador examinar valors, camins
+                d'execució I excepcions. Per exemple, la següent declaració de registre afegeix
+                    <code>"MainActivity"</code> i <code>"Hello World"</code> al registre:</para>
+            <para><code>Log.d("MainActivity", "Hello World");</code></para>
+            <para>Els elements següents d'aquesta declaració són els següents:</para>
+            <itemizedlist>
+                <listitem>
+                    <para><code>log:</code> classe de registre per enviar missatges de registre al
+                        tauler <emphasis role="bold">Logcat</emphasis>.</para>
+                </listitem>
+                <listitem>
+                    <para><code>d:</code> La configuració del nivell de registre de <emphasis
+                            role="bold">depuració</emphasis> per filtrar el missatge de registre es
+                        mostra al tauler <emphasis role="bold">Logcat</emphasis>. Altres nivells de
+                        registre són e per <emphasis role="bold">Error</emphasis>, w per <emphasis
+                            role="bold">Warn</emphasis> I I per <emphasis role="bold"
+                            >Info</emphasis>. Assigneu un nivell de registre perquè pugueu filtrar
+                        els missatges de registre mitjançant el menú desplegable situat al centre
+                        del panell <emphasis role="bold">Logcat</emphasis>.</para>
+                </listitem>
+                <listitem>
+                    <para><code>MainActivity:</code> El primer argument és una etiqueta que es pot
+                        utilitzar per filtrar missatges al tauler <emphasis role="bold"
+                            >Logcat</emphasis>. Aquesta etiqueta sol ser el nom de l'activitat de la
+                        qual s'origina el missatge. Tantmateix, podeu anomenar l'etiqueta a
+                        qualsevol cosa que us sigui útil per depurar.</para>
+                </listitem>
+                <listitem>
+                    <para><code>"Hello world":</code> El segon argument és el missatge real.</para>
+                </listitem>
+            </itemizedlist>
+            <para>Per convenció, les etiquetes de registre es defineixen com a constants per a
+                l'activitat:</para>
+            <para>
+                <programlisting><code>private static final String LOG_TAG = MainActivity.class.getSimpleName();</code></programlisting>
+            </para>
+            <para>Utilitzeu la constant a les declaracions de registre:</para>
+            <para>
+                <programlisting><code>Log.d(LOG_TAG, "Hello World"); </code></programlisting>
+            </para>
+            <para>Després d'afegir la declaració Log.d que es mostra més amunt, seguiu aquests
+                passos per veure el missatge de registre:</para>
+            <orderedlist>
+                <listitem>
+                    <para>Si el panell <emphasis role="bold">Logcat</emphasis> encara no està obert,
+                        feu clic a la pestanya <emphasis role="bold">Logcat</emphasis> a la part
+                        inferior d'Android Studio per obrir-lo.</para>
+                </listitem>
+                <listitem>
+                    <para>Canvieu el nivell de <code>log</code> al tauler <emphasis role="bold"
+                            >Logcat</emphasis> a <emphasis role="bold">Debug</emphasis> (També podeu
+                        deixar el nivell de registre com a detallat perquè hi ha molt pocs missatges
+                        de registre.)</para>
+                </listitem>
+                <listitem>
+                    <para>Executeu l'aplicació en un dispositiu virtual.</para>
+                </listitem>
+            </orderedlist>
+            <para>El missatge següent hauria d'aparèixer al tauler <emphasis role="bold"
+                    >Logcat</emphasis>:</para>
+            <para>
+                <programlisting><code>11-24 14:06:59.001 4696-4696/? D/MainActivity: Hello World</code></programlisting>
+            </para>
+        </sect2>
+    </sect1>
+</article>

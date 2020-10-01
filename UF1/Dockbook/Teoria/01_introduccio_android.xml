@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<book xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <info>
+        <title>Apunts Android</title>
+        <author>
+            <personname>
+                <firstname>Cristina</firstname>
+                <surname>Roigé Gaja</surname>
+            </personname>
+        </author>
+    </info>
+    <part>
+        <title>Construeix la teva primera App</title>
+        <chapter>
+            <title>Què és Android</title>
+            <sect1>
+                <title>Què és Android</title>
+                <para>Android és un sistema operatiu i una plataforma de programació desenvolupada
+                    per Google per a telèfons mòbils i altres dispositius mòbils, com ara tauletes.
+                    Pot funcionar en molts dispositius diferents de fablicants . Android inclou un
+                    kit de desenvolupament de programari (SDK) que us ajuda a escriure codi original
+                    i muntar mòduls de programari per crear aplicacions per a usuaris d'Android.
+                    Android també proporciona un mercat per distribuir aplicacions. Tot junt,
+                    Android representa un ecosistema per aplicacions mòbils.</para>
+                <para/>
+                <para>
+                    <figure>
+                        <title></title>
+                        <mediaobject>
+                            <imageobject>
+                                <imagedata fileref="img/01_introduccio_android/001.jpg" scale="100" align="center"/>
+                            </imageobject>
+                        </mediaobject>
+                    </figure>
+                </para>
+            </sect1>
+            <sect1>
+                <title>Perquè desenvolupem apps per Android</title>
+                <para>Els desenvolupadors creen aplicacions per diversos motius. És possible que
+                    hagin de fer front als requisits empresarials o crear nous serveis o empreses, o
+                    bé poden oferir jocs i altres tipus de continguts per als usuares. Els
+                    desenvolupadors opten per desenvolupar amb Android per arribar a la majoria dels
+                    usuaris de dispositius mòbils.</para>
+                <sect2>
+                    <title>La plataforma més popular per a aplicacions mòbils.</title>
+                    <para>Com la plataforma més popular del món, Android alimenta centenars de
+                        milions de dispositius mòbils a més de 190 països de tot el món. Té la base
+                        instal·lada més gran de qualsevol plataforma mòbil i continua creixent
+                        ràpidament. Cada dia, un altre milió d'usuaris alimenten els seus
+                        dispositius amb Android per primera vegada i comencen a buscar aplicacions,
+                        jocs i altres continguts digitals.</para>
+                    <para>
+                        <figure>
+                            <title></title>
+                            <mediaobject>
+                                <imageobject>
+                                    <imagedata fileref="img/01_introduccio_android/002.jpg" scale="100" align="center"/>
+                                </imageobject>
+                            </mediaobject>
+                        </figure>
+                    </para>
+                </sect2>
+                <sect2>
+                    <title>La millor experiencia per els usuaris d'apps</title>
+                    <para>Android proporciona una interfície d'usuari (UI) de pantalla tàctil per
+                        interactuar amb les aplicacions. La IU d`Android es basa principalment en la
+                        manipulació directa. Les persones utilitzen gestos tàctils com lliscar,
+                        tocar i pessigar per manipular objectes en pantalla personalitzable per
+                        introduir text. Android també és compatible amb controladors de jocs i
+                        teclats físics de mida completa connectats per Bluetooth o USB</para>
+                    <para>
+                        <figure>
+                            <title></title>
+                            <mediaobject>
+                                <imageobject>
+                                    <imagedata fileref="img/01_introduccio_android/003.jpg" scale="100" align="center"/>
+                                </imageobject>
+                            </mediaobject>
+                        </figure>
+                    </para>
+                    <para>La pantalla inicial d'Android pot contenir diversos panells d'icones
+                        d'aplicacions, que llancen les seves aplicacions associades. Els panells de
+                        la pantalla d'inici també poden contenir widgets d'aplicacions, que mostren
+                        contingut en temps real, que s'actualitza automàticament, com ara el temps,
+                        la safata d'entrada de correu electrònic de l'usuari o un marcador de
+                        notícies. Android també pot reproduir contingut multimèdia com ara música,
+                        animació i vídeo. La figura superior mostra les icones de les aplicacions a
+                        la pantalla inicial (esquerra), reproduïnt música (al centre) i mostrant els
+                        widgets de l'aplicació (dreta). A la part superior de la pantalla hi ha una
+                        barra d'estat que mostra informació sobre el dispositiu i la seva
+                        connectivitat. La pantalla d'inici d'Android pot estar formada per diversos
+                        panells i l'usuari fa lliscar els panells d'anada i tornada</para>
+                    <para>Android està dissenyat per proporcionar una resposta immediata a l'entrada
+                        de l'usuari. A més d'una interfície dinàmica que respon immediatament al
+                        tacte, un dispositiu alimentat per Android pot vibrar per proporcionar
+                        feedback tàctil. Moltes aplicacions aprofiten el maquinari intern com ara
+                        acceleròmetres, tiroscopis i sensors de proximitat per respondre a accions
+                        addicionals de l'usuari. Aquests sensors també poden detectar la rotació de
+                        la pantalla. Per exemple, podeu dissenyar un joc de carreres on l'usuari
+                        giri el dispositiu com si estractes d'un volant.</para>
+                    <para>La plataforma Android, basada en el nucli Linux, està dissenyada
+                        principalment per a dispositius mòbils i tauletes. Com que els dispositius
+                        que funcionen amb Android solen funcionar amb bateria, Android està
+                        dissenyat per a gestionar processos per mantenir el consum d'energia com a
+                        mínim i proporcionar un ús més llarg de la bateria</para>
+                </sect2>
+                <sect2>
+                    <title>Es fàcil desenvolupar apps</title>
+                    <para>Per desenvolupar aplicacions que aprofitin el sistema operatiu i la
+                        interfície d'usuari Android, utilitzareu el kit de desenvolupament de
+                        programari android (SDK). L'SDK inclou biblioteques de programari de codi
+                        preescrit, un depurador, un emulador de dispositius, documentació, codi de
+                        mostra i tutorials. Utilitzeu l'SDK per crear aplicacions que tinguin un
+                        aspecte fantàstic i que aprofitin les funcions de maquinari disponibles a
+                        cada dispositiu amb Android.</para>
+                    <para>Per desenvolupar aplicacions mitjançant l'SDK, utilitzeu el llenguatge de
+                        programació Java per desenvolupar l'aplicació i fitxers XML (Extensible
+                        Markup Language). per descriure recursos de dades. Escrivint el codi a Java
+                        i creant una única aplicació binària, creeu una aplicació que es pugui
+                        executar tant amb els factors de forma del telèfon com de la tauleta. Podeu
+                        declarar la nostra interfície d'usuari en conjunts lleugers de recursos XML.
+                        Per exemple, creeu un conjunt per a parts de la IU que siguin comunes a tots
+                        els factors de forma i altres conjunts per a funcions específiques per a
+                        telèfons o tauletes. En temps d'execució, Android aplica els conjunts de
+                        recursos correctes en funció de la mida de la pantalla del dispositiu, la
+                        densitat de la pantalla, la configuració regional, etc.</para>
+                    <para>Per ajudar-vos a desenvolupar les vostres aplicacions de manera eficient,
+                        Google ofereix un entorn de desenvolupament integrat (IDE) anomenat Android
+                        Studio. Ofereix funcions avançades per desenvolupar, depurar i empaquetar
+                        aplicacions d'Android o crear dispositius virtuals. que emulin qualsevol
+                        configuració de maquinari.</para>
+                    <para>Android proporciona una rica arquitectura de desenvolupament. No
+                        necessiteu saber molt sobre components d'aquesta arquitectura, però és útil
+                        saber què hi ha disponible al sistema per utilitzar-la. El diagrama següent
+                        mostra els components principals de la pila d'Android: el sistema operatiu i
+                        l'arquitectura de desenvolupament.</para>
+                    <para>
+                        <figure>
+                            <title></title>
+                            <mediaobject>
+                                <imageobject>
+                                    <imagedata fileref="img/01_introduccio_android/004.jpg" scale="100" align="center"/>
+                                </imageobject>
+                            </mediaobject>
+                        </figure>
+                    </para>
+                    <para></para>
+                    <para>A la figura anterior:</para>
+                    <orderedlist>
+                        <listitem>
+                            <para>Aplicacions: les vostres aplicacions viuen a aquest nivell,
+                                juntament amb les aplicacions bàsiques del sistema per a correu
+                                electrònic, missatgeria SMS, calendaris, navegació per Internet i
+                                contactes</para>
+                        </listitem>
+                        <listitem>
+                            <para>Java API framework: totes les funcions per al desenvolupament
+                                d'android, com ara components d'interfície d'usuari, gestió de
+                                recursos i gestió del cicle de vida, estan disponibles a través
+                                d'interfícies de programació d'aplicacions (API). No necessiteu
+                                conèixer els detalls de com funcionen les API. Només cal apendre a
+                                utilitzar-los.</para>
+                        </listitem>
+                        <listitem>
+                            <para>Biblioteques i temps d'execució d'Android: cada aplicació
+                                s'executa en el seu propi procés, amb la seva pròpia instància del
+                                temps d'execució d'Android. Android inclou un conjunt de
+                                biblioteques bàsiques d'execució que proporcionen la major part de
+                                la funcionalitat del llenguatge de programació Java. Molts
+                                components i serveis bàsics del sistema Android es construeixen a
+                                partir de codi natiu que requereixen biblioteques natives escrites
+                                en C i C++. Aquestes biblioteques natives estan disponibles per a
+                                les aplicacions mitjançant el marc API Java.</para>
+                        </listitem>
+                        <listitem>
+                            <para>Capa d'abstracció de maquinari (HAL): aquesta capa proporciona
+                                interfícies estàndard que exposen les capacitats de maquinari del
+                                dispositiu al framework API. el HAL consta de múltiples mòduls de
+                                biblioteca, cadascun dels quals implementa una interfície per a un
+                                tipus específic de component de maquinari, com ara càmera o el mòdul
+                                Bluetooth.</para>
+                        </listitem>
+                        <listitem>
+                            <para>Nucli Linux: la base de la plataforma Android és el nucli Linux.
+                                Les capes situades sobre el nucli Linux es basen en el nucli Linux
+                                per a la realització de fils, la gestió de memòria de baix nivell i
+                                altres funcions subajacents. l'ús d'un nucli Linux permet a Android
+                                aprofitar les funcions de seguretat basades en Linux i permet als
+                                fabricants de dispositius desenvolupar controladors de maquinari per
+                                a un nucli conegut.</para>
+                        </listitem>
+                    </orderedlist>
+                </sect2>
+                <sect2>
+                    <title>Moltes opcions de distribució</title>
+                    <para>Podeu distribuir la vostra aplicació per a Android de moltes maneres
+                        diferents: correu electrònic, lloc web o un mercat d'aplicacions com a
+                        Google Play Els usuaris d'Android descarreguen milers de milions
+                        d'aplicacions ì jocs de Google Play Store cada mes. Google Play és un servei
+                        de distribució digital, operat i desenvolupat per Google, que serveix com a
+                        botiga oficial d'aplicacions per a Android. Google Play permet als
+                        consumidors navegar i descarregar aplicacions desenvolupades amb lSDK
+                        d'Adroid</para>
+                    <para>
+                        <figure>
+                            <title></title>
+                            <mediaobject>
+                                <imageobject>
+                                    <imagedata fileref="img/01_introduccio_android/005.jpg" scale="100" align="center"/>
+                                </imageobject>
+                            </mediaobject>
+                        </figure>
+                    </para>
+                </sect2>
+            </sect1>
+            <sect1>
+                <title>Versions d'Android</title>
+                <para>Google proporciona actualitzacions incrementals importants al sistema operatiu
+                    Android mitjançant noms temàtics de pastisseria. la darrera versió però és
+                    Android 10.</para>
+                <para>
+                    <table frame="all">
+                        <title/>
+                        <tgroup cols="4">
+                            <colspec colname="c1" colnum="1" colwidth="1.49*"/>
+                            <colspec colname="c2" colnum="2" colwidth="1*"/>
+                            <colspec colname="c3" colnum="3" colwidth="1.99*"/>
+                            <colspec colname="c4" colnum="4" colwidth="1.49*"/>
+                            <thead>
+                                <row>
+                                    <entry>Nom en clau</entry>
+                                    <entry>Versió</entry>
+                                    <entry>Data de llançament Inicial</entry>
+                                    <entry>Nivell d'API</entry>
+                                </row>
+                            </thead>
+                            <tbody>
+                                <row>
+                                    <entry>N/A</entry>
+                                    <entry>1.0</entry>
+                                    <entry>23 setembre 2008</entry>
+                                    <entry>1</entry>
+                                </row>
+                                <row>
+                                    <entry>Petit Four (1.1)</entry>
+                                    <entry>1.1</entry>
+                                    <entry>9 febrer 2009</entry>
+                                    <entry>2</entry>
+                                </row>
+                                <row>
+                                    <entry>Cupcake</entry>
+                                    <entry>1.5</entry>
+                                    <entry>27 abril 2009</entry>
+                                    <entry>3</entry>
+                                </row>
+                                <row>
+                                    <entry>Donut</entry>
+                                    <entry>1.6</entry>
+                                    <entry>15 setembre 2009</entry>
+                                    <entry>4</entry>
+                                </row>
+                                <row>
+                                    <entry>Eclair</entry>
+                                    <entry>2.0 - 2.1</entry>
+                                    <entry>26 d'octubre 2009</entry>
+                                    <entry>5 - 7</entry>
+                                </row>
+                                <row>
+                                    <entry>Froyo</entry>
+                                    <entry>2.2 - 2.2.3</entry>
+                                    <entry>20 de maig 2010</entry>
+                                    <entry>8</entry>
+                                </row>
+                                <row>
+                                    <entry>Gingerbread</entry>
+                                    <entry>2.3 - 2.3.7</entry>
+                                    <entry>6 desembre 2010</entry>
+                                    <entry>9  - 10</entry>
+                                </row>
+                                <row>
+                                    <entry>Honeycomb</entry>
+                                    <entry>3.0 - 3.2.6</entry>
+                                    <entry>22 febrer 2011</entry>
+                                    <entry>11 - 13</entry>
+                                </row>
+                                <row>
+                                    <entry>Ice Cream Sandwich</entry>
+                                    <entry>4.0 - 4.0.4</entry>
+                                    <entry>198 d'octubre 2011</entry>
+                                    <entry>14 -15</entry>
+                                </row>
+                                <row>
+                                    <entry>Jelly Bean</entry>
+                                    <entry>4.1 - 4.3.1</entry>
+                                    <entry>9 juliol 2012</entry>
+                                    <entry>16 -18</entry>
+                                </row>
+                                <row>
+                                    <entry>KitKat</entry>
+                                    <entry>4.4 - 4.4.4</entry>
+                                    <entry>31 octubre 2015</entry>
+                                    <entry>19 - 20</entry>
+                                </row>
+                                <row>
+                                    <entry>Lollipop</entry>
+                                    <entry>5.0 - 5.1.1</entry>
+                                    <entry>12 novembre 2014</entry>
+                                    <entry>21 - 22</entry>
+                                </row>
+                                <row>
+                                    <entry>Marshmallow</entry>
+                                    <entry>6.0 - 6.0.1</entry>
+                                    <entry>5 octubre 2015</entry>
+                                    <entry>23</entry>
+                                </row>
+                                <row>
+                                    <entry>Nougat</entry>
+                                    <entry>7.0 -7.1.2</entry>
+                                    <entry>22 agost 2016</entry>
+                                    <entry>24 - 25</entry>
+                                </row>
+                                <row>
+                                    <entry>Oreo</entry>
+                                    <entry>8.0 - 8.1</entry>
+                                    <entry>21 agost 2017</entry>
+                                    <entry>26 - 27</entry>
+                                </row>
+                                <row>
+                                    <entry>Pie</entry>
+                                    <entry>9.0</entry>
+                                    <entry>6 agost 2018</entry>
+                                    <entry>28</entry>
+                                </row>
+                                <row>
+                                    <entry>Android 10</entry>
+                                    <entry>10.0</entry>
+                                    <entry>3 setembre 2019</entry>
+                                    <entry>29</entry>
+                                </row>
+                                <row>
+                                    <entry>Android 11</entry>
+                                    <entry>11</entry>
+                                    <entry>8 setembre 2020</entry>
+                                    <entry>30</entry>
+                                </row>
+                            </tbody>
+                        </tgroup>
+                    </table>
+                </para>
+                <para><emphasis role="bold">Consell</emphasis>: vegeu les versions anteriors i les
+                    seves funcions a The Android Story. El tauler de les versions de la plataforma
+                    mostra la distribució dels dispositius actius que executen cada versió
+                    d'android, en funció del nombre de dispositius que visiten la botiga de Google
+                    Play. És una bona pàctica admetre aproximadament el 90% dels dispositius actius,
+                    mentre orienteu la vostra aplicació a la versió més recent.</para>
+                <para><emphasis role="bold">Nota</emphasis>: per porporcionar les millors funcions i
+                    funcionalitats de les versions d'Android, utilitzeu la biblioteca d'assistència
+                    d'Android a la vostra aplicació. Aquesta biblioteca permet la vostra aplicació
+                    utilitzar API recents de la plataforma Android en dispositius antics.</para>
+            </sect1>
+            <sect1>
+                <title>Els reptes per el desenvolupament d'app per a Android.</title>
+                <para>Tot i que la plataforma Android ofereix una gran funcionalitat per al
+                    desenvolupament d'aplicacions, encara hi ha diversos reptes que cal afrontar,
+                    com ara:</para>
+                <orderedlist>
+                    <listitem>
+                        <para>Construcció multi-pantalla.</para>
+                    </listitem>
+                    <listitem>
+                        <para>Aconseguir un rendiment correcte.</para>
+                    </listitem>
+                    <listitem>
+                        <para>Mantenir el codi i el dels usuaris més segurs.</para>
+                    </listitem>
+                    <listitem>
+                        <para>Assegurar que la vostra aplicació sigui compatible amb els versions
+                            anteriors de la plataforma.</para>
+                    </listitem>
+                    <listitem>
+                        <para>Compendre el mercat i l'usuari.</para>
+                    </listitem>
+                </orderedlist>
+                <sect2>
+                    <title>Construir un món de pantalles-múltiples.</title>
+                    <para>Android funciona amb milers de milions de dispositius de mà a tot el món I
+                        admet diversos factors de forma, inclosos els dispositius portàtils i els
+                        televisors. Els dispositius tenen diferents mides i formes, cosa que afecta
+                        la manera de dissenyar les pantalles i els elements de la interfície
+                        d'usuari de les vostres aplicacions.</para>
+                    <para>
+                        <figure>
+                            <title></title>
+                            <mediaobject>
+                                <imageobject>
+                                    <imagedata fileref="img/01_introduccio_android/006.jpg" scale="100" align="center"/>
+                                </imageobject>
+                            </mediaobject>
+                        </figure>
+                    </para>
+                    <para>A més els fabricants de dispositius poden afegir els seus propis elements
+                        d'interfície d'usuari, estils i colors per diferenciar els seus productes.
+                        Cada fabricant ofereix diferents funcions respecte als formularis del
+                        teclat, la mida de la pantalla o els botonsde la càmera. Una aplicació que
+                        s'executa en un dispositiu pot semblar una mica diferent en un altre. El
+                        vostre repte, com a desenvolupador, es dissenyar elements d'interfície
+                        d'usuari que funcionin en tots els dispositius.</para>
+                </sect2>
+                <sect2>
+                    <title>Maximització del rendiment de l'aplicació</title>
+                    <para>El rendiment d'una aplicació es determina per la rapidesa amb què
+                        s'executa, la facilitat per connectar-se a la xarxa i el grau de gestió de
+                        l'ús de la bateria i la memòria. El rendiment es feu afectat per factors com
+                        la durada de la bateria, el contingut multimèdia i l'accés a internet.
+                        Tingueu en compte que algunes funcions que dissenyeu per a la vostra
+                        aplicació poden causar problemes de rendiment als usuaris. Per exemple, per
+                        estalviar la bateria de l'usuari, activeu els serveis en segon pla només
+                        quan siguin necessaris.</para>
+                </sect2>
+                <sect2>
+                    <title>Manteniu el vostre codi i els vostres usuaris més segurs</title>
+                    <para>Heu de pendre precaucions perquè el vostre codi i l'exepriència de
+                        l'usuari quan utilitzen la vostra aplicació siguin el més segures
+                        possibles.</para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>Utilitzeu eines com ProGuard, que es proporciona a Android Studio.
+                                ProGuard detecta i elimina classes, camps, mètodes i atributs no
+                                utilitzats.</para>
+                        </listitem>
+                        <listitem>
+                            <para>Xifra tots els codis i recursos de la teva aplicació mentre
+                                empaquetes l'aplicació.</para>
+                        </listitem>
+                        <listitem>
+                            <para>Per protegir la informació crítica dels usuaris, com ara inicis de
+                                sessió i contrasenyes, assegureu el vostre canal de comunicació per
+                                portegir les dades en trànsit a través d'Internet, així com les
+                                dades en repòs al dispositiu.</para>
+                        </listitem>
+                    </itemizedlist>
+                </sect2>
+                <sect2>
+                    <title>Seguir sent compatible amb versions anteriors d'Android</title>
+                    <para>La plataforma Android continua millorant i proporciona noves funcions que
+                        podeu afegir a les vostres aplicacions. Tantmanteix, heu de garantir que
+                        l'aplicació pugui continuar funcionant en dispositius amb versions anteriors
+                        d'Android. No és pràctic centrar-se només en la versió d'Android més recent,
+                        ja que és possible que no tots els usuaris hagin actualitzat els seus
+                        dispositius o puguin actualitzar-los. Afortunadament, Android Studio ofereix
+                        opcions perquè els desenvolupadors puguin seguir sent més fàcilment
+                        compatibles amb versions anteriors.</para>
+                </sect2>
+            </sect1>
+            <sect1>
+                <title>Apendre més</title>
+                <para>Introducció desenvolupadors Android I documentació:</para>
+                <para><link xlink:href="https://developer.android.com/guide/index.html">Guia per
+                        desenvolupadors</link></para>
+                <para><link xlink:href="https://developer.android.com/guide/platform/index.html"
+                        >Arquitectura de la plataforma</link></para>
+                <para><link xlink:href="https://developer.android.com/guide/topics/ui/overview.html"
+                        >Vistes</link></para>
+                <para><link
+                        xlink:href="https://developer.android.com/training/basics/supporting-devices/platforms.html"
+                        >Compatibilitat en diferents versions.</link></para>
+                <para>Altres:</para>
+                <para><link xlink:href="https://developer.android.com/about/dashboards/index.html"
+                        >Distribució panell</link></para>
+                <para><link xlink:href="https://developer.android.com/studio/intro/index.html">Inici
+                        Android Studio</link></para>
+                <para><link xlink:href="https://en.wikipedia.org/wiki/Android_version_history"
+                        >wikipedia història Android</link></para>
+            </sect1>
+        </chapter>
+    </part>
+</book>
